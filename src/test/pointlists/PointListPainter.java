@@ -7,10 +7,10 @@ import java.util.List;
 
 import javax.vecmath.Point2d;
 
+import painter.AbstractPainter;
 import painter.BoundsCalculator;
-import painter.IPainter;
 
-public class PointListPainter implements IPainter<List<Point2d>> {
+public class PointListPainter extends AbstractPainter<List<Point2d>> {
     
     private BoundsCalculator<List<Point2d>> boundsCalculator =
         new BoundsCalculator<List<Point2d>>() {
@@ -39,24 +39,19 @@ public class PointListPainter implements IPainter<List<Point2d>> {
         this.graphics = graphics;
     }
     
-    private double calculateScale(List<Point2d> points, Rectangle2D canvas) {
-        Rectangle2D bounds = boundsCalculator.getBounds(points);
-        double bW = bounds.getWidth();
-        double bH = bounds.getHeight();
-        double cW = canvas.getWidth();
-        double cH = canvas.getHeight();
-        
-        return Math.min(cW / bW, cH / bH);
-    }
-
     @Override
     public void paint(List<Point2d> points, Rectangle2D canvas) {
-        double scale = calculateScale(points, canvas);
+        double scale = getScale(points, canvas);
         for (Point2d point : points) {
             int x = (int) (scale * point.x) - d;
             int y = (int) (scale * point.y) - d;
             graphics.fillOval(x, y, pointSize, pointSize);
         }
+    }
+
+    @Override
+    public Rectangle2D getModelBounds(List<Point2d> model) {
+        return boundsCalculator.getBounds(model);
     }
 
 }
