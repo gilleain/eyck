@@ -1,6 +1,6 @@
 package painter;
 
-public interface Painter<T> {
+public interface IPainter<T> {
 
     public void paint(T object);
 }
