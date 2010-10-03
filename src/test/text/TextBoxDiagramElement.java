@@ -6,9 +6,9 @@ import diagram.Diagram;
 
 public class TextBoxDiagramElement implements Diagram<TextBox> {
     
-    private String text;
+    public String text;
     
-    private Point2d center;
+    public Point2d center;
 
     public TextBoxDiagramElement(String text, Point2d center) {
         this.text = text;

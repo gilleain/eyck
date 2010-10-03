@@ -25,13 +25,24 @@ public class TextBoxListPainter extends AbstractPainter<List<TextBox>> {
     @Override
     public void paint(List<TextBox> textBoxes, Rectangle2D canvas) {
         double scale = super.getScale(textBoxes, canvas);
-        TextBoxListDiagram diagram = new TextBoxListDiagram();
+        TextBoxListDiagram roughDiagram = new TextBoxListDiagram();
         for (TextBox textBox : textBoxes) {
             double x = textBox.center.x * scale;
             double y = textBox.center.y * scale;
             TextBoxDiagramElement element = 
                 new TextBoxDiagramElement(textBox.text, new Point2d(x, y));
-            diagram.add(element);
+            roughDiagram.add(element);
+        }
+        Rectangle2D diagramBounds = diagramBounder.getBounds(roughDiagram);
+        scale = getScale(diagramBounds, canvas);
+        
+        TextBoxListDiagram exactDiagram = new TextBoxListDiagram();
+        for (TextBox textBox : textBoxes) {
+            double x = textBox.center.x * scale;
+            double y = textBox.center.y * scale;
+            TextBoxDiagramElement element = 
+                new TextBoxDiagramElement(textBox.text, new Point2d(x, y));
+            exactDiagram.add(element);
         }
     }
 
