@@ -1,17 +1,21 @@
 package test.text;
 
+import java.awt.geom.Rectangle2D;
+
 import javax.vecmath.Point2d;
 
 import diagram.Diagram;
 
 public class TextBoxDiagramElement implements Diagram<TextBox> {
     
-    public String text;
+    public TextBox textBox;
     
     public Point2d center;
+    
+    public Rectangle2D bounds;
 
-    public TextBoxDiagramElement(String text, Point2d center) {
-        this.text = text;
+    public TextBoxDiagramElement(TextBox textBox, Point2d center) {
+        this.textBox = textBox;
         this.center = center;
     }
 
