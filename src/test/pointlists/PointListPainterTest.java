@@ -1,4 +1,4 @@
-package test;
+package test.pointlists;
 
 import java.awt.Image;
 import java.awt.geom.Rectangle2D;
@@ -7,6 +7,8 @@ import java.util.List;
 import javax.vecmath.Point2d;
 
 import org.junit.Test;
+
+import test.BasePaintingTest;
 
 public class PointListPainterTest extends BasePaintingTest {
     

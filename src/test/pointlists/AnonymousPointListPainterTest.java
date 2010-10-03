@@ -1,4 +1,4 @@
-package test;
+package test.pointlists;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import painter.BoundsCalculator;
 import painter.IPainter;
+import test.BasePaintingTest;
 
 public class AnonymousPointListPainterTest extends BasePaintingTest {
     
@@ -39,7 +40,7 @@ public class AnonymousPointListPainterTest extends BasePaintingTest {
         
         // empty canvas?
         pointPainter.paint(pointList, new Rectangle2D.Double());
-        writeImage(image, "screen_points.png");
+        writeImage(image, "screen_points");
     }
     
     @Test
