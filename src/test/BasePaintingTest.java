@@ -1,6 +1,7 @@
 package test;
 
 import java.awt.Image;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.File;
@@ -20,6 +21,10 @@ public class BasePaintingTest {
     public Image getBlankTestImage() {
         return new BufferedImage(
                 IMG_WIDTH, IMG_HEIGHT, BufferedImage.TYPE_INT_RGB);
+    }
+    
+    public Rectangle2D getCanvas() {
+        return new Rectangle2D.Double(0, 0, IMG_WIDTH, IMG_HEIGHT);
     }
     
     public List<Point2d> getRandomPointsInScreenSpace(int w, int h, int count) {

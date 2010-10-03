@@ -12,7 +12,7 @@ import org.junit.Test;
 import painter.BoundsCalculator;
 import painter.IPainter;
 
-public class PointPainterTest extends BasePaintingTest {
+public class AnonymousPointListPainterTest extends BasePaintingTest {
     
     public final int point_size = 4;
     
