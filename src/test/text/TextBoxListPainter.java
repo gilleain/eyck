@@ -7,20 +7,19 @@ import java.util.List;
 import javax.vecmath.Point2d;
 
 import painter.AbstractPainter;
-import painter.BoundsCalculator;
+import painter.IBounder;
 
 public class TextBoxListPainter extends AbstractPainter<List<TextBox>> {
     
-    private BoundsCalculator<List<TextBox>> modelBoundsCalculator =
-        new TextBoxBoundsCalculator();
+    private IBounder<List<TextBox>> modelBounder = new TextBoxBounder();
     
-    private BoundsCalculator<TextBoxListDiagram> diagramBoundsCalculator;
+    private IBounder<TextBoxListDiagram> diagramBounder;
     
     private Graphics2D graphics;
     
     public TextBoxListPainter(Graphics2D graphics) {
         this.graphics = graphics;
-        diagramBoundsCalculator = new TextBoxListDiagramBoundsCalculator(graphics);
+        diagramBounder = new TextBoxListDiagramBounder(graphics);
     }
 
     @Override
@@ -38,7 +37,7 @@ public class TextBoxListPainter extends AbstractPainter<List<TextBox>> {
 
     @Override
     public Rectangle2D getModelBounds(List<TextBox> model) {
-        return modelBoundsCalculator.getBounds(model);
+        return modelBounder.getBounds(model);
     }
 
 }

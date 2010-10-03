@@ -9,7 +9,7 @@ import java.awt.geom.Rectangle2D;
  *
  * @param <T> A model object that has a 2D bounding rectangle.
  */
-public interface BoundsCalculator<T> {
+public interface IBounder<T> {
     
     public Rectangle2D getBounds(T object);
 

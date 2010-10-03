@@ -3,9 +3,9 @@ package test.text;
 import java.awt.geom.Rectangle2D;
 import java.util.List;
 
-import painter.BoundsCalculator;
+import painter.IBounder;
 
-public class TextBoxBoundsCalculator implements BoundsCalculator<List<TextBox>> {
+public class TextBoxBounder implements IBounder<List<TextBox>> {
 
     @Override
     public Rectangle2D getBounds(List<TextBox> textBoxes) {

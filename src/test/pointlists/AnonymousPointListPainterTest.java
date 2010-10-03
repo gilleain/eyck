@@ -9,7 +9,7 @@ import javax.vecmath.Point2d;
 
 import org.junit.Test;
 
-import painter.BoundsCalculator;
+import painter.IBounder;
 import painter.IPainter;
 import test.BasePaintingTest;
 
@@ -47,8 +47,8 @@ public class AnonymousPointListPainterTest extends BasePaintingTest {
     public void testDrawingPointsInModelSpace() {
         Image image = getBlankTestImage();
         final Graphics2D graphics = (Graphics2D) image.getGraphics();
-        BoundsCalculator<List<Point2d>> boundsCalculator = 
-            new BoundsCalculator<List<Point2d>>() {
+        IBounder<List<Point2d>> boundsCalculator = 
+            new IBounder<List<Point2d>>() {
 
             @Override
             public Rectangle2D getBounds(List<Point2d> points) {
