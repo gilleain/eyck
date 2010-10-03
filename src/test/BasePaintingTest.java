@@ -44,7 +44,8 @@ public class BasePaintingTest {
         return pointList;
     }
     
-    public void writeImage(Image image, File outputFile) {
+    public void writeImage(Image image, String filename) {
+        File outputFile = new File("output", filename + ".png");
         try {
             ImageIO.write((RenderedImage) image, "PNG", outputFile);
         } catch (Exception e) {
