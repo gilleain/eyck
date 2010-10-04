@@ -22,12 +22,12 @@ public class TextBoxListPainterTest extends BasePaintingTest {
     
     @Test
     public void basicUsage() {
-        // make the model
+        // make the 'model', but in screen space
         List<Point2d> points = getRandomPointsInScreenSpace(IMG_WIDTH, IMG_HEIGHT, 5);
         Diagram<TextBoxElement> textBoxes = new TextBoxListDiagram();
         for (int i = 0; i < points.size(); i++) {
             Point2d p = points.get(i);
-            String letter = alphabet.substring(i, i+1);
+            String letter = alphabet.substring(i, i + 1);
             TextBox textBox = new TextBox(letter, p);
             textBoxes.add(new TextBoxElement(textBox, p));
         }

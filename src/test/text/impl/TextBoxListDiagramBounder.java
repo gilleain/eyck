@@ -1,7 +1,7 @@
 package test.text.impl;
 
 import java.awt.FontMetrics;
-import java.awt.Graphics2D;
+import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
 
 import javax.vecmath.Point2d;
@@ -13,9 +13,9 @@ import painter.IBounder;
 public class TextBoxListDiagramBounder implements
         IBounder<Diagram<TextBoxElement>> {
     
-    private Graphics2D graphics;
+    private Graphics graphics;
     
-    public TextBoxListDiagramBounder(Graphics2D graphics) {
+    public TextBoxListDiagramBounder(Graphics graphics) {
         this.graphics = graphics;
     }
 
