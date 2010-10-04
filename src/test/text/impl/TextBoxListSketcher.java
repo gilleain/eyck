@@ -24,12 +24,15 @@ public class TextBoxListSketcher
     @Override
     public Diagram<TextBoxElement> sketch(List<TextBox> textBoxes, Rectangle2D canvas) {
         scale = getScale(textBoxes, canvas);
-        System.out.println("rough scale = " + scale);
+        Point2d center = getCenter(textBoxes);
+        
+        System.out.println("rough scale = " + scale + " model center = " + center);
         
         Diagram<TextBoxElement> diagram = new TextBoxListDiagram();
+        Point2d cc = new Point2d(canvas.getCenterX(), canvas.getCenterY());
         for (TextBox textBox : textBoxes) {
-            double x = textBox.center.x * scale;
-            double y = textBox.center.y * scale;
+            double x = ((textBox.center.x - center.x) * scale) + cc.x;
+            double y = ((textBox.center.y - center.y) * scale) + cc.y;
             Point2d p = new Point2d(x, y);
             TextBoxElement element = new TextBoxElement(textBox, p);
             diagram.add(element);
