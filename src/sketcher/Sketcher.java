@@ -1,5 +1,7 @@
 package sketcher;
 
+import java.awt.geom.Rectangle2D;
+
 import diagram.Diagram;
 
 /**
@@ -12,6 +14,15 @@ import diagram.Diagram;
  */
 public interface Sketcher<T, S> {
     
-    public Diagram<S> sketch(T modelObject, double scale);
+    /**
+     * Create a sketch of the model object as a diagram.
+     * 
+     * @param modelObject the model object to sketch
+     * @param canvas the canvas to sketch on
+     * @return a diagram
+     */
+    public Diagram<S> sketch(T modelObject, Rectangle2D canvas);
+    
+    public double getScale();
 
 }

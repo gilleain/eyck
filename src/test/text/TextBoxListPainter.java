@@ -51,12 +51,15 @@ public class TextBoxListPainter extends AbstractPainter<List<TextBox>> {
 
     @Override
     public void paint(List<TextBox> textBoxes, Rectangle2D canvas) {
-        double scale = super.getScale(textBoxes, canvas);
-        System.out.println("rough scale = " + scale);
-        Diagram<TextBoxElement> roughDiagram = sketcher.sketch(textBoxes, scale);
+        
+        Diagram<TextBoxElement> roughDiagram = sketcher.sketch(textBoxes, canvas);
+        double scale = sketcher.getScale();
+        
         Rectangle2D diagramBounds = diagramBounder.getBounds(roughDiagram);
+        
         scale *= getScale(diagramBounds, canvas);
         System.out.println("exact scale = " + scale);
+        
         for (TextBoxElement textBoxElement : roughDiagram.getElements()) {
             double centerX = textBoxElement.textBox.center.x * scale;
             double centerY = textBoxElement.textBox.center.y * scale;
