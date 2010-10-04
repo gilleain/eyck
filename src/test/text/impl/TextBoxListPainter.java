@@ -37,10 +37,10 @@ public class TextBoxListPainter extends AbstractPainter<Diagram<TextBoxElement>>
             stringBounds = textBox.bounds;
         }
         double halfWidth = stringBounds.getWidth() / 2;
-        double height = stringBounds.getHeight();
+        double halfHeight = stringBounds.getHeight() / 2;
         double ascent = metrics.getAscent();
         int x = (int) (cX - halfWidth);
-        int y = (int) (cY - height + ascent);
+        int y = (int) (cY - halfHeight + ascent);
         return new Point(x, y);
     }
     
