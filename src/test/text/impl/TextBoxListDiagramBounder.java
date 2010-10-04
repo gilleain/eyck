@@ -21,7 +21,7 @@ public class TextBoxListDiagramBounder implements
 
     @Override
     public Rectangle2D getBounds(Diagram<TextBoxElement> diagram) {
-        Rectangle2D bounds = new Rectangle2D.Double();
+        Rectangle2D bounds = null;
         FontMetrics metrics = graphics.getFontMetrics();
         for (TextBoxElement textBoxElement : diagram.getElements()) {
             String text = textBoxElement.textBox.text;
@@ -33,7 +33,11 @@ public class TextBoxListDiagramBounder implements
                 new Rectangle2D.Double(p.x - w2, p.y - h2, 2 * w2, 2 * h2);  
             System.out.println(properBounds);
             textBoxElement.bounds = properBounds;
-            bounds.add(properBounds);
+            if (bounds == null) {
+                bounds = (Rectangle2D) properBounds.clone();
+            } else {
+                bounds.add(properBounds);
+            }
             System.out.println("bounds now " + bounds);
         }
         return bounds;

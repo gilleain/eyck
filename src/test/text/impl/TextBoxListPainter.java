@@ -6,6 +6,8 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.geom.Rectangle2D;
 
+import javax.vecmath.Point2d;
+
 import diagram.Diagram;
 
 import painter.AbstractPainter;
@@ -41,17 +43,32 @@ public class TextBoxListPainter extends AbstractPainter<Diagram<TextBoxElement>>
         int y = (int) (cY - height + ascent);
         return new Point(x, y);
     }
+    
+    public double transform(
+            double coord, double diagramCenter, double scale, double screenCenter) {
+        double t = ((coord - diagramCenter) * scale) + screenCenter;
+        System.out.println(
+                String.format(
+                        "transforming ((%2.2f - %2.2f) * %2.2f) + %2.2f -> %2.2f",
+                        coord, diagramCenter, scale, screenCenter, t));
+        return t;
+    }
 
     @Override
-    public void paint(Diagram<TextBoxElement> textBoxDiagram, Rectangle2D canvas, double scale) {
+    public void paint(Diagram<TextBoxElement> textBoxDiagram, Rectangle2D canvas) {
         
-        scale *= getScale(textBoxDiagram, canvas);
+        double scale = getScale(textBoxDiagram, canvas);
+        Point2d center = getCenter(textBoxDiagram);
+        Point2d cc = new Point2d(canvas.getCenterX(), canvas.getCenterY());
         System.out.println("exact scale = " + scale);
         
         for (TextBoxElement textBoxElement : textBoxDiagram.getElements()) {
-            double centerX = textBoxElement.textBox.center.x * scale;
-            double centerY = textBoxElement.textBox.center.y * scale;
-            Point p = getTextPoint(textBoxElement, centerX, centerY);
+            double oldX = textBoxElement.center.x;
+            double oldY = textBoxElement.center.y;
+            double newX = transform(oldX, center.x, scale, cc.x);
+            double newY = transform(oldY, center.y, scale, cc.y);
+            Point p = getTextPoint(textBoxElement, newX, newY);
+            System.out.println("drawing string at " + p);
             graphics.drawString(textBoxElement.textBox.text, p.x, p.y);
         }
     }

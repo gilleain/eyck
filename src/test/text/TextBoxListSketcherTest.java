@@ -12,24 +12,20 @@ import org.junit.Test;
 
 import diagram.Diagram;
 
-import test.BasePaintingTest;
 import test.text.impl.TextBox;
 import test.text.impl.TextBoxElement;
 import test.text.impl.TextBoxListDiagramBounder;
 import test.text.impl.TextBoxListSketcher;
 
-public class TextBoxListSketcherTest extends BasePaintingTest {
-    
-    public final String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+public class TextBoxListSketcherTest extends BaseTextBoxListTest {
     
     public void paint(Diagram<TextBoxElement> diagram, Image image) {
         Graphics2D g = (Graphics2D)image.getGraphics();
+        g.setFont(LARGE_FONT);
         TextBoxListDiagramBounder bounder = new TextBoxListDiagramBounder(g);
-        Rectangle2D dB = bounder.getBounds(diagram);
-        Point2d diagramCenter = new Point2d(dB.getCenterX(), dB.getCenterY());
+        bounder.getBounds(diagram);
         for (TextBoxElement tbe : diagram.getElements()) {
             Rectangle2D bounds = tbe.bounds;
-            int x = 1;
             g.draw(bounds);
         }
     }
@@ -65,10 +61,7 @@ public class TextBoxListSketcherTest extends BasePaintingTest {
     
     @Test
     public void letterPair() {
-        List<TextBox> model = new ArrayList<TextBox>();
-        model.add(new TextBox("H", new Point2d(-1, 0)));
-        model.add(new TextBox("H", new Point2d(1, 0)));
-        sketchModel(model, "letterPair_sketch");
+        sketchModel(makeLetterPairModel(), "letterPair_sketch");
     }
 
 }

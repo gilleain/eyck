@@ -29,9 +29,7 @@ public class TextBoxListRenderer implements IRenderer<List<TextBox>> {
     @Override
     public void render(List<TextBox> model, Rectangle2D canvas) {
         Diagram<TextBoxElement> diagram = sketcher.sketch(model, canvas);
-        double scale = sketcher.getScale();
-        
-        painter.paint(diagram, canvas, scale);
+        painter.paint(diagram, canvas);
     }
 
 }

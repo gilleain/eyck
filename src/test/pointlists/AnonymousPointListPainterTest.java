@@ -25,7 +25,7 @@ public class AnonymousPointListPainterTest extends BasePaintingTest {
         IPainter<List<Point2d>> pointPainter = new IPainter<List<Point2d>>() {
 
             @Override
-            public void paint(List<Point2d> points, Rectangle2D canvas, double scale) {
+            public void paint(List<Point2d> points, Rectangle2D canvas) {
                 int d = point_size/2;
                 for (Point2d point : points) {
                     int x = (int)point.x - d;
@@ -39,7 +39,7 @@ public class AnonymousPointListPainterTest extends BasePaintingTest {
             getRandomPointsInScreenSpace(IMG_WIDTH, IMG_HEIGHT, 10);
         
         // empty canvas?
-        pointPainter.paint(pointList, new Rectangle2D.Double(), 1);
+        pointPainter.paint(pointList, new Rectangle2D.Double());
         writeImage(image, "screen_points");
     }
     
@@ -65,13 +65,13 @@ public class AnonymousPointListPainterTest extends BasePaintingTest {
         IPainter<List<Point2d>> pointPainter = new IPainter<List<Point2d>>() {
 
             @Override
-            public void paint(List<Point2d> points, Rectangle2D canvas, double scale) {
+            public void paint(List<Point2d> points, Rectangle2D canvas) {
                 double bW = bounds.getWidth();
                 double bH = bounds.getHeight();
                 double cW = canvas.getWidth();
                 double cH = canvas.getHeight();
                 
-                scale *= Math.min(cW / bW, cH / bH);
+                double scale = Math.min(cW / bW, cH / bH);
                 
                 int d = point_size / 2;
                 for (Point2d point : points) {
@@ -82,7 +82,7 @@ public class AnonymousPointListPainterTest extends BasePaintingTest {
             }
         };
         Rectangle2D canvas = new Rectangle2D.Double(0, 0, IMG_WIDTH, IMG_HEIGHT);
-        pointPainter.paint(pointList, canvas, 1);
+        pointPainter.paint(pointList, canvas);
         writeImage(image, "model_points");
     }
 

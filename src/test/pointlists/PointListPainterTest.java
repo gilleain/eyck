@@ -18,7 +18,7 @@ public class PointListPainterTest extends BasePaintingTest {
         PointListPainter painter = new PointListPainter(image.getGraphics());
         List<Point2d> model = getRandomPointsInModelSpace(10);
         Rectangle2D canvas = getCanvas();
-        painter.paint(model, canvas, 1);
+        painter.paint(model, canvas);
         writeImage(image, "plp_model");
     }
 
