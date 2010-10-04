@@ -4,5 +4,5 @@ import java.awt.geom.Rectangle2D;
 
 public interface IPainter<T> {
 
-    public void paint(T object, Rectangle2D canvas);
+    public void paint(T object, Rectangle2D canvas, double scale);
 }

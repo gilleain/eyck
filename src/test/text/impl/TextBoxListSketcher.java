@@ -1,4 +1,4 @@
-package test.text;
+package test.text.impl;
 
 import java.awt.geom.Rectangle2D;
 import java.util.List;

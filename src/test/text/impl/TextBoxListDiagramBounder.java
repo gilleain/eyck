@@ -1,9 +1,8 @@
-package test.text;
+package test.text.impl;
 
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
-import java.util.List;
 
 import javax.vecmath.Point2d;
 

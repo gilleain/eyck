@@ -39,8 +39,8 @@ public class PointListPainter extends AbstractPainter<List<Point2d>> {
     }
 
     @Override
-    public void paint(List<Point2d> points, Rectangle2D canvas) {
-        double scale = getScale(points, canvas);
+    public void paint(List<Point2d> points, Rectangle2D canvas, double scale) {
+        scale *= getScale(points, canvas);
         for (Point2d point : points) {
             int x = (int) (scale * point.x) - d;
             int y = (int) (scale * point.y) - d;
@@ -49,7 +49,7 @@ public class PointListPainter extends AbstractPainter<List<Point2d>> {
     }
 
     @Override
-    public Rectangle2D getModelBounds(List<Point2d> model) {
+    public Rectangle2D getDiagramBounds(List<Point2d> model) {
         return bounder.getBounds(model);
     }
 

@@ -1,25 +1,19 @@
-package test.text;
+package test.text.impl;
 
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.geom.Rectangle2D;
-import java.util.List;
 
 import diagram.Diagram;
 
 import painter.AbstractPainter;
 import painter.IBounder;
-import sketcher.Sketcher;
 
-public class TextBoxListPainter extends AbstractPainter<List<TextBox>> {
-    
-    private IBounder<List<TextBox>> modelBounder = new TextBoxBounder();
+public class TextBoxListPainter extends AbstractPainter<Diagram<TextBoxElement>> {
     
     private IBounder<Diagram<TextBoxElement>> diagramBounder;
-    
-    private Sketcher<List<TextBox>, TextBoxElement> sketcher;
     
     private Graphics2D graphics;
     
@@ -30,7 +24,6 @@ public class TextBoxListPainter extends AbstractPainter<List<TextBox>> {
     public TextBoxListPainter(Graphics2D graphics) {
         this.graphics = graphics;
         diagramBounder = new TextBoxListDiagramBounder(graphics);
-        sketcher = new TextBoxListSketcher();
     }
     
     private Point getTextPoint(TextBoxElement textBox, double cX, double cY) {
@@ -50,17 +43,12 @@ public class TextBoxListPainter extends AbstractPainter<List<TextBox>> {
     }
 
     @Override
-    public void paint(List<TextBox> textBoxes, Rectangle2D canvas) {
+    public void paint(Diagram<TextBoxElement> textBoxDiagram, Rectangle2D canvas, double scale) {
         
-        Diagram<TextBoxElement> roughDiagram = sketcher.sketch(textBoxes, canvas);
-        double scale = sketcher.getScale();
-        
-        Rectangle2D diagramBounds = diagramBounder.getBounds(roughDiagram);
-        
-        scale *= getScale(diagramBounds, canvas);
+        scale *= getScale(textBoxDiagram, canvas);
         System.out.println("exact scale = " + scale);
         
-        for (TextBoxElement textBoxElement : roughDiagram.getElements()) {
+        for (TextBoxElement textBoxElement : textBoxDiagram.getElements()) {
             double centerX = textBoxElement.textBox.center.x * scale;
             double centerY = textBoxElement.textBox.center.y * scale;
             Point p = getTextPoint(textBoxElement, centerX, centerY);
@@ -69,8 +57,8 @@ public class TextBoxListPainter extends AbstractPainter<List<TextBox>> {
     }
 
     @Override
-    public Rectangle2D getModelBounds(List<TextBox> model) {
-        return modelBounder.getBounds(model);
+    public Rectangle2D getDiagramBounds(Diagram<TextBoxElement> model) {
+        return diagramBounder.getBounds(model);
     }
 
 }
