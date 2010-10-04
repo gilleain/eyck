@@ -7,16 +7,19 @@ import java.awt.Point;
 import java.awt.geom.Rectangle2D;
 import java.util.List;
 
-import javax.vecmath.Point2d;
+import diagram.Diagram;
 
 import painter.AbstractPainter;
 import painter.IBounder;
+import sketcher.Sketcher;
 
 public class TextBoxListPainter extends AbstractPainter<List<TextBox>> {
     
     private IBounder<List<TextBox>> modelBounder = new TextBoxBounder();
     
-    private IBounder<TextBoxListDiagram> diagramBounder;
+    private IBounder<Diagram<TextBoxElement>> diagramBounder;
+    
+    private Sketcher<List<TextBox>, TextBoxElement> sketcher;
     
     private Graphics2D graphics;
     
@@ -27,9 +30,10 @@ public class TextBoxListPainter extends AbstractPainter<List<TextBox>> {
     public TextBoxListPainter(Graphics2D graphics) {
         this.graphics = graphics;
         diagramBounder = new TextBoxListDiagramBounder(graphics);
+        sketcher = new TextBoxListSketcher();
     }
     
-    private Point getTextPoint(TextBoxDiagramElement textBox, double cX, double cY) {
+    private Point getTextPoint(TextBoxElement textBox, double cX, double cY) {
         FontMetrics metrics = graphics.getFontMetrics();
         Rectangle2D stringBounds;
         if (textBox.bounds == null) {
@@ -49,18 +53,11 @@ public class TextBoxListPainter extends AbstractPainter<List<TextBox>> {
     public void paint(List<TextBox> textBoxes, Rectangle2D canvas) {
         double scale = super.getScale(textBoxes, canvas);
         System.out.println("rough scale = " + scale);
-        TextBoxListDiagram roughDiagram = new TextBoxListDiagram();
-        for (TextBox textBox : textBoxes) {
-            double x = textBox.center.x * scale;
-            double y = textBox.center.y * scale;
-            TextBoxDiagramElement element = 
-                new TextBoxDiagramElement(textBox, new Point2d(x, y));
-            roughDiagram.add(element);
-        }
+        Diagram<TextBoxElement> roughDiagram = sketcher.sketch(textBoxes, scale);
         Rectangle2D diagramBounds = diagramBounder.getBounds(roughDiagram);
         scale *= getScale(diagramBounds, canvas);
         System.out.println("exact scale = " + scale);
-        for (TextBoxDiagramElement textBoxElement : roughDiagram) {
+        for (TextBoxElement textBoxElement : roughDiagram.getElements()) {
             double centerX = textBoxElement.textBox.center.x * scale;
             double centerY = textBoxElement.textBox.center.y * scale;
             Point p = getTextPoint(textBoxElement, centerX, centerY);

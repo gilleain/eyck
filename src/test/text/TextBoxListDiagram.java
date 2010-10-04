@@ -1,27 +1,25 @@
 package test.text;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import diagram.Diagram;
 
-public class TextBoxListDiagram 
-       implements Diagram<List<TextBox>>, Iterable<TextBoxDiagramElement> {
+public class TextBoxListDiagram implements Diagram<TextBoxElement> {
     
-    private List<TextBoxDiagramElement> diagramElements;
+    private List<TextBoxElement> diagramElements;
     
     public TextBoxListDiagram() {
-        this.diagramElements = new ArrayList<TextBoxDiagramElement>();
+        this.diagramElements = new ArrayList<TextBoxElement>();
     }
     
-    public void add(TextBoxDiagramElement element) {
+    public void add(TextBoxElement element) {
         diagramElements.add(element);
     }
 
     @Override
-    public Iterator<TextBoxDiagramElement> iterator() {
-        return diagramElements.iterator();
+    public List<TextBoxElement> getElements() {
+        return diagramElements;
     }
 
 }

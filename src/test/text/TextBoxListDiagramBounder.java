@@ -3,13 +3,16 @@ package test.text;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
+import java.util.List;
 
 import javax.vecmath.Point2d;
+
+import diagram.Diagram;
 
 import painter.IBounder;
 
 public class TextBoxListDiagramBounder implements
-        IBounder<TextBoxListDiagram> {
+        IBounder<Diagram<TextBoxElement>> {
     
     private Graphics2D graphics;
     
@@ -18,10 +21,10 @@ public class TextBoxListDiagramBounder implements
     }
 
     @Override
-    public Rectangle2D getBounds(TextBoxListDiagram diagram) {
+    public Rectangle2D getBounds(Diagram<TextBoxElement> diagram) {
         Rectangle2D bounds = new Rectangle2D.Double();
         FontMetrics metrics = graphics.getFontMetrics();
-        for (TextBoxDiagramElement textBoxElement : diagram) {
+        for (TextBoxElement textBoxElement : diagram.getElements()) {
             String text = textBoxElement.textBox.text;
             Rectangle2D stringBounds = metrics.getStringBounds(text, graphics);
             double w2 = stringBounds.getWidth() / 2;

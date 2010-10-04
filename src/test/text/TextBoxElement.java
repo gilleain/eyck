@@ -4,9 +4,7 @@ import java.awt.geom.Rectangle2D;
 
 import javax.vecmath.Point2d;
 
-import diagram.Diagram;
-
-public class TextBoxDiagramElement implements Diagram<TextBox> {
+public class TextBoxElement  {
     
     public TextBox textBox;
     
@@ -14,7 +12,7 @@ public class TextBoxDiagramElement implements Diagram<TextBox> {
     
     public Rectangle2D bounds;
 
-    public TextBoxDiagramElement(TextBox textBox, Point2d center) {
+    public TextBoxElement(TextBox textBox, Point2d center) {
         this.textBox = textBox;
         this.center = center;
     }
