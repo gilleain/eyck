@@ -7,7 +7,7 @@ import java.util.List;
 import javax.vecmath.Point2d;
 
 import test.BasePaintingTest;
-import test.text.impl.TextBox;
+import test.text.model.TextBox;
 
 public class BaseTextBoxListTest extends BasePaintingTest {
     

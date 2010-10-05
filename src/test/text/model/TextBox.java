@@ -1,4 +1,4 @@
-package test.text.impl;
+package test.text.model;
 
 import javax.vecmath.Point2d;
 

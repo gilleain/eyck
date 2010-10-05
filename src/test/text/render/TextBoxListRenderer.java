@@ -1,4 +1,4 @@
-package test.text.impl;
+package test.text.render;
 
 import java.awt.geom.Rectangle2D;
 import java.util.List;
@@ -9,6 +9,8 @@ import painter.IPainter;
 
 import renderer.IRenderer;
 import sketcher.Sketcher;
+import test.text.diagram.TextBoxElement;
+import test.text.model.TextBox;
 
 public class TextBoxListRenderer implements IRenderer<List<TextBox>> {
     

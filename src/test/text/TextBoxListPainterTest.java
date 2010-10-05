@@ -11,11 +11,11 @@ import org.junit.Test;
 
 import diagram.Diagram;
 
-import test.text.impl.TextBox;
-import test.text.impl.TextBoxBounder;
-import test.text.impl.TextBoxElement;
-import test.text.impl.TextBoxListDiagram;
-import test.text.impl.TextBoxListPainter;
+import test.text.diagram.TextBoxElement;
+import test.text.diagram.TextBoxListDiagram;
+import test.text.model.TextBox;
+import test.text.model.TextBoxBounder;
+import test.text.render.TextBoxListPainter;
 
 public class TextBoxListPainterTest extends BaseTextBoxListTest {
     

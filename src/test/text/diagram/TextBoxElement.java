@@ -1,8 +1,10 @@
-package test.text.impl;
+package test.text.diagram;
 
 import java.awt.geom.Rectangle2D;
 
 import javax.vecmath.Point2d;
+
+import test.text.model.TextBox;
 
 public class TextBoxElement  {
     

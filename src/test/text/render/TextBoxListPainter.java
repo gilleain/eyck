@@ -1,4 +1,4 @@
-package test.text.impl;
+package test.text.render;
 
 import java.awt.FontMetrics;
 import java.awt.Graphics;
@@ -12,6 +12,8 @@ import diagram.Diagram;
 
 import painter.AbstractPainter;
 import painter.IBounder;
+import test.text.diagram.TextBoxElement;
+import test.text.diagram.TextBoxListDiagramBounder;
 
 public class TextBoxListPainter extends AbstractPainter<Diagram<TextBoxElement>> {
     

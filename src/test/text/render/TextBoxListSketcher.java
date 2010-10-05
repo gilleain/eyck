@@ -1,4 +1,4 @@
-package test.text.impl;
+package test.text.render;
 
 import java.awt.geom.Rectangle2D;
 import java.util.List;
@@ -9,6 +9,10 @@ import painter.IBounder;
 
 import diagram.Diagram;
 import sketcher.AbstractSketcher;
+import test.text.diagram.TextBoxElement;
+import test.text.diagram.TextBoxListDiagram;
+import test.text.model.TextBox;
+import test.text.model.TextBoxBounder;
 
 public class TextBoxListSketcher 
        extends AbstractSketcher<List<TextBox>, TextBoxElement> {

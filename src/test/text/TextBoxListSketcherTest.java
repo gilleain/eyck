@@ -12,10 +12,10 @@ import org.junit.Test;
 
 import diagram.Diagram;
 
-import test.text.impl.TextBox;
-import test.text.impl.TextBoxElement;
-import test.text.impl.TextBoxListDiagramBounder;
-import test.text.impl.TextBoxListSketcher;
+import test.text.diagram.TextBoxElement;
+import test.text.diagram.TextBoxListDiagramBounder;
+import test.text.model.TextBox;
+import test.text.render.TextBoxListSketcher;
 
 public class TextBoxListSketcherTest extends BaseTextBoxListTest {
     

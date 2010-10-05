@@ -1,4 +1,4 @@
-package test.text.impl;
+package test.text.diagram;
 
 import java.awt.FontMetrics;
 import java.awt.Graphics;
