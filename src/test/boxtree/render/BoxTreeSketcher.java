@@ -1,9 +1,10 @@
-package test.boxtree;
+package test.boxtree.render;
 
 import java.awt.geom.Rectangle2D;
 
 import diagram.Diagram;
 import sketcher.AbstractSketcher;
+import test.boxtree.diagram.BoxElement;
 import test.boxtree.model.BoxTree;
 
 public class BoxTreeSketcher extends AbstractSketcher<BoxTree, BoxElement> {

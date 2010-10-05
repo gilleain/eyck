@@ -1,4 +1,4 @@
-package test.boxtree;
+package test.boxtree.diagram;
 
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
