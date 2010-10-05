@@ -44,10 +44,4 @@ public class TextBoxListSketcher
     public Rectangle2D getModelBounds(List<TextBox> model) {
         return modelBounder.getBounds(model);
     }
-
-    @Override
-    public double getScale() {
-        return scale;
-    }
-
 }

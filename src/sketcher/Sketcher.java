@@ -22,7 +22,5 @@ public interface Sketcher<T, S> {
      * @return a diagram
      */
     public Diagram<S> sketch(T modelObject, Rectangle2D canvas);
-    
-    public double getScale();
 
 }
