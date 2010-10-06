@@ -3,13 +3,13 @@ package test.text.render;
 import java.awt.geom.Rectangle2D;
 import java.util.List;
 
-import diagram.Diagram;
+import diagram.IDiagram;
+import diagram.TextElement;
 
 import painter.IPainter;
 
 import renderer.IRenderer;
 import sketcher.Sketcher;
-import test.text.diagram.TextElement;
 import test.text.model.Text;
 
 public class TextBoxListRenderer implements IRenderer<List<Text>> {
@@ -30,7 +30,7 @@ public class TextBoxListRenderer implements IRenderer<List<Text>> {
 
     @Override
     public void render(List<Text> model, Rectangle2D canvas) {
-        Diagram<TextElement> diagram = sketcher.sketch(model, canvas);
+        IDiagram<TextElement> diagram = sketcher.sketch(model, canvas);
         painter.paint(diagram, canvas);
     }
 

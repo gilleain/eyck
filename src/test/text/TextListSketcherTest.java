@@ -10,16 +10,16 @@ import javax.vecmath.Point2d;
 
 import org.junit.Test;
 
-import diagram.Diagram;
+import diagram.IDiagram;
+import diagram.TextElement;
 
-import test.text.diagram.TextElement;
 import test.text.diagram.TextListDiagramBounder;
 import test.text.model.Text;
 import test.text.render.TextBoxListSketcher;
 
 public class TextListSketcherTest extends BaseTextListTest {
     
-    public void paint(Diagram<TextElement> diagram, Image image) {
+    public void paint(IDiagram<TextElement> diagram, Image image) {
         Graphics2D g = (Graphics2D)image.getGraphics();
         g.setFont(LARGE_FONT);
         TextListDiagramBounder bounder = new TextListDiagramBounder(g);
@@ -33,7 +33,7 @@ public class TextListSketcherTest extends BaseTextListTest {
     public void sketchModel(List<Text> model, String filename) {
         Image image = getBlankTestImage();
         TextBoxListSketcher sketcher = new TextBoxListSketcher();
-        Diagram<TextElement> diagram = sketcher.sketch(model, getCanvas());
+        IDiagram<TextElement> diagram = sketcher.sketch(model, getCanvas());
         paint(diagram, image);
         writeImage(image, filename);
     }

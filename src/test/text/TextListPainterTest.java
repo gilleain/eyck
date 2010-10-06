@@ -9,9 +9,9 @@ import javax.vecmath.Point2d;
 
 import org.junit.Test;
 
-import diagram.Diagram;
+import diagram.IDiagram;
+import diagram.TextElement;
 
-import test.text.diagram.TextElement;
 import test.text.diagram.TextListDiagram;
 import test.text.model.Text;
 import test.text.model.TextBounder;
@@ -19,7 +19,7 @@ import test.text.render.TextBoxListPainter;
 
 public class TextListPainterTest extends BaseTextListTest {
     
-    public Diagram<TextElement> makeDiagram(List<Text> model) {
+    public IDiagram<TextElement> makeDiagram(List<Text> model) {
         TextBounder bounder = new TextBounder();
         Rectangle2D modelBounds = bounder.getBounds(model);
         Point2d mc = new Point2d(modelBounds.getCenterX(), modelBounds.getCenterY());
@@ -29,12 +29,12 @@ public class TextListPainterTest extends BaseTextListTest {
         double scale = Math.min(canvas.getWidth() / modelBounds.getWidth(),
                                 canvas.getHeight() / modelBounds.getHeight());
         
-        Diagram<TextElement> diagram = new TextListDiagram();
+        IDiagram<TextElement> diagram = new TextListDiagram();
         for (Text textBox : model) {
             double x = ((textBox.center.x - mc.x) * scale) + cc.x;
             double y = ((textBox.center.y - mc.y) * scale) + cc.y;
             Point2d diagramPoint = new Point2d(x, y);
-            diagram.add(new TextElement(textBox, diagramPoint));
+            diagram.add(new TextElement(textBox.text, diagramPoint));
         }
         return diagram;
     }
@@ -43,12 +43,12 @@ public class TextListPainterTest extends BaseTextListTest {
     public void basicUsage() {
         // make the 'model', but in screen space
         List<Point2d> points = getRandomPointsInScreenSpace(IMG_WIDTH, IMG_HEIGHT, 5);
-        Diagram<TextElement> textBoxes = new TextListDiagram();
+        IDiagram<TextElement> textBoxes = new TextListDiagram();
         for (int i = 0; i < points.size(); i++) {
             Point2d p = points.get(i);
             String letter = alphabet.substring(i, i + 1);
             Text textBox = new Text(letter, p);
-            textBoxes.add(new TextElement(textBox, p));
+            textBoxes.add(new TextElement(textBox.text, p));
         }
         
         // render it
@@ -61,7 +61,7 @@ public class TextListPainterTest extends BaseTextListTest {
     @Test
     public void letterPairTest() {
         List<Text> model = makeLetterPairModel();
-        Diagram<TextElement> diagram = makeDiagram(model);
+        IDiagram<TextElement> diagram = makeDiagram(model);
         
         Image image = getBlankTestImage();
         Graphics g = image.getGraphics();

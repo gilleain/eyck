@@ -2,7 +2,7 @@ package diagram;
 
 import java.util.List;
 
-public interface Diagram<T> {
+public interface IDiagram<T> {
     
     public List<T> getElements();
     

@@ -8,16 +8,16 @@ import java.awt.geom.Rectangle2D;
 
 import javax.vecmath.Point2d;
 
-import diagram.Diagram;
+import diagram.IDiagram;
+import diagram.TextElement;
 
 import painter.AbstractPainter;
 import painter.IBounder;
-import test.text.diagram.TextElement;
 import test.text.diagram.TextListDiagramBounder;
 
-public class TextBoxListPainter extends AbstractPainter<Diagram<TextElement>> {
+public class TextBoxListPainter extends AbstractPainter<IDiagram<TextElement>> {
     
-    private IBounder<Diagram<TextElement>> diagramBounder;
+    private IBounder<IDiagram<TextElement>> diagramBounder;
     
     private Graphics2D graphics;
     
@@ -34,7 +34,7 @@ public class TextBoxListPainter extends AbstractPainter<Diagram<TextElement>> {
         FontMetrics metrics = graphics.getFontMetrics();
         Rectangle2D stringBounds;
         if (textBox.bounds == null) {
-            stringBounds = metrics.getStringBounds(textBox.textBox.text, graphics);
+            stringBounds = metrics.getStringBounds(textBox.text, graphics);
         } else {
             stringBounds = textBox.bounds;
         }
@@ -57,7 +57,7 @@ public class TextBoxListPainter extends AbstractPainter<Diagram<TextElement>> {
     }
 
     @Override
-    public void paint(Diagram<TextElement> textBoxDiagram, Rectangle2D canvas) {
+    public void paint(IDiagram<TextElement> textBoxDiagram, Rectangle2D canvas) {
         
         double scale = getScale(textBoxDiagram, canvas);
         Point2d center = getCenter(textBoxDiagram);
@@ -71,12 +71,12 @@ public class TextBoxListPainter extends AbstractPainter<Diagram<TextElement>> {
             double newY = transform(oldY, center.y, scale, cc.y);
             Point p = getTextPoint(textBoxElement, newX, newY);
             System.out.println("drawing string at " + p);
-            graphics.drawString(textBoxElement.textBox.text, p.x, p.y);
+            graphics.drawString(textBoxElement.text, p.x, p.y);
         }
     }
 
     @Override
-    public Rectangle2D getDiagramBounds(Diagram<TextElement> model) {
+    public Rectangle2D getDiagramBounds(IDiagram<TextElement> model) {
         return diagramBounder.getBounds(model);
     }
 

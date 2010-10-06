@@ -3,9 +3,10 @@ package test.text.diagram;
 import java.util.ArrayList;
 import java.util.List;
 
-import diagram.Diagram;
+import diagram.IDiagram;
+import diagram.TextElement;
 
-public class TextListDiagram implements Diagram<TextElement> {
+public class TextListDiagram implements IDiagram<TextElement> {
     
     private List<TextElement> diagramElements;
     

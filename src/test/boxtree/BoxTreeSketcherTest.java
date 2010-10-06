@@ -6,7 +6,7 @@ import java.awt.geom.Rectangle2D;
 
 import org.junit.Test;
 
-import diagram.Diagram;
+import diagram.IDiagram;
 
 import test.BasePaintingTest;
 import test.boxtree.diagram.BoxElement;
@@ -43,7 +43,7 @@ public class BoxTreeSketcherTest extends BasePaintingTest {
         
         Image image = getBlankTestImage();
         Graphics2D g = (Graphics2D) image.getGraphics();
-        Diagram<BoxElement> diagram = sketcher.sketch(model, getCanvas());
+        IDiagram<BoxElement> diagram = sketcher.sketch(model, getCanvas());
         for (BoxElement element : diagram.getElements()) {
             g.draw(element.bounds);
         }

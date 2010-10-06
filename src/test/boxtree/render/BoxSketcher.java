@@ -2,7 +2,7 @@ package test.boxtree.render;
 
 import java.awt.geom.Rectangle2D;
 
-import diagram.Diagram;
+import diagram.IDiagram;
 import sketcher.AbstractSketcher;
 import test.boxtree.diagram.BoxElement;
 import test.boxtree.model.Box;
@@ -10,7 +10,7 @@ import test.boxtree.model.Box;
 public class BoxSketcher extends AbstractSketcher<Box, BoxElement> {
 
     @Override
-    public Diagram<BoxElement> sketch(Box modelObject, Rectangle2D canvas) {
+    public IDiagram<BoxElement> sketch(Box modelObject, Rectangle2D canvas) {
         return new BoxElement(modelObject.rectangle);
     }
 

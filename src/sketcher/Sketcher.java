@@ -2,7 +2,7 @@ package sketcher;
 
 import java.awt.geom.Rectangle2D;
 
-import diagram.Diagram;
+import diagram.IDiagram;
 
 /**
  * Produces diagrams from model objects.
@@ -21,6 +21,6 @@ public interface Sketcher<T, S> {
      * @param canvas the canvas to sketch on
      * @return a diagram
      */
-    public Diagram<S> sketch(T modelObject, Rectangle2D canvas);
+    public IDiagram<S> sketch(T modelObject, Rectangle2D canvas);
 
 }

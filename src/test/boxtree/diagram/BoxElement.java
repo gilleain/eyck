@@ -4,9 +4,10 @@ import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 
-import diagram.Diagram;
+import diagram.IDiagram;
 
-public class BoxElement implements Diagram<BoxElement> {
+
+public class BoxElement implements IDiagram<BoxElement> {
     
     private List<BoxElement> children;
     
@@ -33,8 +34,7 @@ public class BoxElement implements Diagram<BoxElement> {
 
     @Override
     public void addAll(List<BoxElement> elements) {
-        // TODO Auto-generated method stub
-        
+        children.addAll(elements);
     }
 
 }
