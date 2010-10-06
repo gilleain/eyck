@@ -10,6 +10,10 @@ import test.boxtree.model.BoxTree;
 public class BoxTreeSketcher extends AbstractSketcher<BoxTree, BoxElement> {
     
     private BoxSketcher boxSketcher;
+    
+    public BoxTreeSketcher() {
+        boxSketcher = new BoxSketcher();
+    }
 
     @Override
     public Diagram<BoxElement> sketch(BoxTree boxTree, Rectangle2D canvas) {
@@ -32,8 +36,20 @@ public class BoxTreeSketcher extends AbstractSketcher<BoxTree, BoxElement> {
 
     @Override
     public Rectangle2D getModelBounds(BoxTree model) {
-        // TODO Auto-generated method stub
-        return null;
+        // pass in null so that the union is made correctly
+        Rectangle2D bounds = null;
+        getModelBounds(model, bounds);
+        return bounds;
+    }
+    
+    private void getModelBounds(BoxTree model, Rectangle2D bounds) {
+        if (model.leaf != null) {
+            if (bounds == null) {
+                bounds = (Rectangle2D) model.leaf.rectangle.clone();
+            }
+        } else {
+            
+        }
     }
 
 }

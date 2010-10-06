@@ -1,5 +1,6 @@
 package test.boxtree.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,5 +21,9 @@ public class BoxTree {
      * Can be null
      */
     public Box leaf;
+    
+    public BoxTree() {
+        children = new ArrayList<BoxTree>();
+    }
 
 }

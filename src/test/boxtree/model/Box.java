@@ -11,5 +11,9 @@ import java.awt.geom.Rectangle2D;
 public class Box {
     
     public Rectangle2D rectangle;
+    
+    public Box(Rectangle2D rectangle) {
+        this.rectangle = rectangle;
+    }
 
 }
