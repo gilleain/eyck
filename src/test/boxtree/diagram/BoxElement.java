@@ -31,4 +31,10 @@ public class BoxElement implements Diagram<BoxElement> {
         children.add(element);
     }
 
+    @Override
+    public void addAll(List<BoxElement> elements) {
+        // TODO Auto-generated method stub
+        
+    }
+
 }

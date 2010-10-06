@@ -22,4 +22,9 @@ public class TextBoxListDiagram implements Diagram<TextBoxElement> {
         return diagramElements;
     }
 
+    @Override
+    public void addAll(List<TextBoxElement> elements) {
+        diagramElements.addAll(elements);
+    }
+
 }

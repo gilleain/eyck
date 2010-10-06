@@ -8,11 +8,26 @@ import test.boxtree.diagram.BoxElement;
 import test.boxtree.model.BoxTree;
 
 public class BoxTreeSketcher extends AbstractSketcher<BoxTree, BoxElement> {
+    
+    private BoxSketcher boxSketcher;
 
     @Override
     public Diagram<BoxElement> sketch(BoxTree boxTree, Rectangle2D canvas) {
         Diagram<BoxElement> boxDiagram = new BoxElement();
+        sketch(boxTree, boxDiagram, canvas);
         return boxDiagram;
+    }
+    
+    private void sketch(BoxTree node, Diagram<BoxElement> diagram, Rectangle2D canvas) {
+        if (node.leaf != null) {
+            Diagram<BoxElement> leafDiagram = boxSketcher.sketch(node.leaf, canvas);
+            diagram.addAll(leafDiagram.getElements());
+        }
+        
+        for (BoxTree child : node.children) {
+            diagram.add(new BoxElement(null));  /// XXX
+            sketch(child, diagram, canvas);
+        }
     }
 
     @Override
