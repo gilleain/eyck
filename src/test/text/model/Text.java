@@ -8,13 +8,13 @@ import javax.vecmath.Point2d;
  * @author maclean
  *
  */
-public class TextBox {
+public class Text {
     
     public String text;
     
     public Point2d center;
     
-    public TextBox(String text, Point2d center) {
+    public Text(String text, Point2d center) {
         this.text = text;
         this.center = center;
     }

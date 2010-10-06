@@ -5,13 +5,13 @@ import java.util.List;
 
 import painter.IBounder;
 
-public class TextBoxBounder implements IBounder<List<TextBox>> {
+public class TextBounder implements IBounder<List<Text>> {
 
     @Override
-    public Rectangle2D getBounds(List<TextBox> textBoxes) {
+    public Rectangle2D getBounds(List<Text> textBoxes) {
         Rectangle2D bounds = new Rectangle2D.Double();
         
-        for (TextBox textBox : textBoxes) {
+        for (Text textBox : textBoxes) {
             bounds.add(textBox.center.x, textBox.center.y);
         }
         

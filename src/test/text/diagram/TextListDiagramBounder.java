@@ -10,20 +10,20 @@ import diagram.Diagram;
 
 import painter.IBounder;
 
-public class TextBoxListDiagramBounder implements
-        IBounder<Diagram<TextBoxElement>> {
+public class TextListDiagramBounder implements
+        IBounder<Diagram<TextElement>> {
     
     private Graphics graphics;
     
-    public TextBoxListDiagramBounder(Graphics graphics) {
+    public TextListDiagramBounder(Graphics graphics) {
         this.graphics = graphics;
     }
 
     @Override
-    public Rectangle2D getBounds(Diagram<TextBoxElement> diagram) {
+    public Rectangle2D getBounds(Diagram<TextElement> diagram) {
         Rectangle2D bounds = null;
         FontMetrics metrics = graphics.getFontMetrics();
-        for (TextBoxElement textBoxElement : diagram.getElements()) {
+        for (TextElement textBoxElement : diagram.getElements()) {
             String text = textBoxElement.textBox.text;
             Rectangle2D stringBounds = metrics.getStringBounds(text, graphics);
             double w2 = stringBounds.getWidth() / 2;

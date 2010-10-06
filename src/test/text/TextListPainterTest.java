@@ -11,16 +11,16 @@ import org.junit.Test;
 
 import diagram.Diagram;
 
-import test.text.diagram.TextBoxElement;
-import test.text.diagram.TextBoxListDiagram;
-import test.text.model.TextBox;
-import test.text.model.TextBoxBounder;
+import test.text.diagram.TextElement;
+import test.text.diagram.TextListDiagram;
+import test.text.model.Text;
+import test.text.model.TextBounder;
 import test.text.render.TextBoxListPainter;
 
-public class TextBoxListPainterTest extends BaseTextBoxListTest {
+public class TextListPainterTest extends BaseTextListTest {
     
-    public Diagram<TextBoxElement> makeDiagram(List<TextBox> model) {
-        TextBoxBounder bounder = new TextBoxBounder();
+    public Diagram<TextElement> makeDiagram(List<Text> model) {
+        TextBounder bounder = new TextBounder();
         Rectangle2D modelBounds = bounder.getBounds(model);
         Point2d mc = new Point2d(modelBounds.getCenterX(), modelBounds.getCenterY());
         Rectangle2D canvas = getCanvas();
@@ -29,12 +29,12 @@ public class TextBoxListPainterTest extends BaseTextBoxListTest {
         double scale = Math.min(canvas.getWidth() / modelBounds.getWidth(),
                                 canvas.getHeight() / modelBounds.getHeight());
         
-        Diagram<TextBoxElement> diagram = new TextBoxListDiagram();
-        for (TextBox textBox : model) {
+        Diagram<TextElement> diagram = new TextListDiagram();
+        for (Text textBox : model) {
             double x = ((textBox.center.x - mc.x) * scale) + cc.x;
             double y = ((textBox.center.y - mc.y) * scale) + cc.y;
             Point2d diagramPoint = new Point2d(x, y);
-            diagram.add(new TextBoxElement(textBox, diagramPoint));
+            diagram.add(new TextElement(textBox, diagramPoint));
         }
         return diagram;
     }
@@ -43,12 +43,12 @@ public class TextBoxListPainterTest extends BaseTextBoxListTest {
     public void basicUsage() {
         // make the 'model', but in screen space
         List<Point2d> points = getRandomPointsInScreenSpace(IMG_WIDTH, IMG_HEIGHT, 5);
-        Diagram<TextBoxElement> textBoxes = new TextBoxListDiagram();
+        Diagram<TextElement> textBoxes = new TextListDiagram();
         for (int i = 0; i < points.size(); i++) {
             Point2d p = points.get(i);
             String letter = alphabet.substring(i, i + 1);
-            TextBox textBox = new TextBox(letter, p);
-            textBoxes.add(new TextBoxElement(textBox, p));
+            Text textBox = new Text(letter, p);
+            textBoxes.add(new TextElement(textBox, p));
         }
         
         // render it
@@ -60,8 +60,8 @@ public class TextBoxListPainterTest extends BaseTextBoxListTest {
     
     @Test
     public void letterPairTest() {
-        List<TextBox> model = makeLetterPairModel();
-        Diagram<TextBoxElement> diagram = makeDiagram(model);
+        List<Text> model = makeLetterPairModel();
+        Diagram<TextElement> diagram = makeDiagram(model);
         
         Image image = getBlankTestImage();
         Graphics g = image.getGraphics();

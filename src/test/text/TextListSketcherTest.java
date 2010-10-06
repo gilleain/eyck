@@ -12,28 +12,28 @@ import org.junit.Test;
 
 import diagram.Diagram;
 
-import test.text.diagram.TextBoxElement;
-import test.text.diagram.TextBoxListDiagramBounder;
-import test.text.model.TextBox;
+import test.text.diagram.TextElement;
+import test.text.diagram.TextListDiagramBounder;
+import test.text.model.Text;
 import test.text.render.TextBoxListSketcher;
 
-public class TextBoxListSketcherTest extends BaseTextBoxListTest {
+public class TextListSketcherTest extends BaseTextListTest {
     
-    public void paint(Diagram<TextBoxElement> diagram, Image image) {
+    public void paint(Diagram<TextElement> diagram, Image image) {
         Graphics2D g = (Graphics2D)image.getGraphics();
         g.setFont(LARGE_FONT);
-        TextBoxListDiagramBounder bounder = new TextBoxListDiagramBounder(g);
+        TextListDiagramBounder bounder = new TextListDiagramBounder(g);
         bounder.getBounds(diagram);
-        for (TextBoxElement tbe : diagram.getElements()) {
+        for (TextElement tbe : diagram.getElements()) {
             Rectangle2D bounds = tbe.bounds;
             g.draw(bounds);
         }
     }
     
-    public void sketchModel(List<TextBox> model, String filename) {
+    public void sketchModel(List<Text> model, String filename) {
         Image image = getBlankTestImage();
         TextBoxListSketcher sketcher = new TextBoxListSketcher();
-        Diagram<TextBoxElement> diagram = sketcher.sketch(model, getCanvas());
+        Diagram<TextElement> diagram = sketcher.sketch(model, getCanvas());
         paint(diagram, image);
         writeImage(image, filename);
     }
@@ -41,11 +41,11 @@ public class TextBoxListSketcherTest extends BaseTextBoxListTest {
     @Test
     public void basicUsage() {
         List<Point2d> points = getRandomPointsInModelSpace(5);
-        List<TextBox> model = new ArrayList<TextBox>();
+        List<Text> model = new ArrayList<Text>();
         for (int i = 0; i < points.size(); i++) {
             Point2d p = points.get(i);
             String letter = alphabet.substring(i, i + 1);
-            model.add(new TextBox(letter, p));
+            model.add(new Text(letter, p));
         }
         
         sketchModel(model, "alphabet_sketch");
@@ -53,8 +53,8 @@ public class TextBoxListSketcherTest extends BaseTextBoxListTest {
     
     @Test
     public void singleLetter() {
-        List<TextBox> model = new ArrayList<TextBox>();
-        model.add(new TextBox("H", new Point2d(0, 0)));
+        List<Text> model = new ArrayList<Text>();
+        model.add(new Text("H", new Point2d(0, 0)));
         
         // TODO - IMPORTANT! MAKE SURE SCALE != INF
     }

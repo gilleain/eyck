@@ -12,12 +12,12 @@ import diagram.Diagram;
 
 import painter.AbstractPainter;
 import painter.IBounder;
-import test.text.diagram.TextBoxElement;
-import test.text.diagram.TextBoxListDiagramBounder;
+import test.text.diagram.TextElement;
+import test.text.diagram.TextListDiagramBounder;
 
-public class TextBoxListPainter extends AbstractPainter<Diagram<TextBoxElement>> {
+public class TextBoxListPainter extends AbstractPainter<Diagram<TextElement>> {
     
-    private IBounder<Diagram<TextBoxElement>> diagramBounder;
+    private IBounder<Diagram<TextElement>> diagramBounder;
     
     private Graphics2D graphics;
     
@@ -27,10 +27,10 @@ public class TextBoxListPainter extends AbstractPainter<Diagram<TextBoxElement>>
     
     public TextBoxListPainter(Graphics2D graphics) {
         this.graphics = graphics;
-        diagramBounder = new TextBoxListDiagramBounder(graphics);
+        diagramBounder = new TextListDiagramBounder(graphics);
     }
     
-    private Point getTextPoint(TextBoxElement textBox, double cX, double cY) {
+    private Point getTextPoint(TextElement textBox, double cX, double cY) {
         FontMetrics metrics = graphics.getFontMetrics();
         Rectangle2D stringBounds;
         if (textBox.bounds == null) {
@@ -57,14 +57,14 @@ public class TextBoxListPainter extends AbstractPainter<Diagram<TextBoxElement>>
     }
 
     @Override
-    public void paint(Diagram<TextBoxElement> textBoxDiagram, Rectangle2D canvas) {
+    public void paint(Diagram<TextElement> textBoxDiagram, Rectangle2D canvas) {
         
         double scale = getScale(textBoxDiagram, canvas);
         Point2d center = getCenter(textBoxDiagram);
         Point2d cc = new Point2d(canvas.getCenterX(), canvas.getCenterY());
         System.out.println("exact scale = " + scale);
         
-        for (TextBoxElement textBoxElement : textBoxDiagram.getElements()) {
+        for (TextElement textBoxElement : textBoxDiagram.getElements()) {
             double oldX = textBoxElement.center.x;
             double oldY = textBoxElement.center.y;
             double newX = transform(oldX, center.x, scale, cc.x);
@@ -76,7 +76,7 @@ public class TextBoxListPainter extends AbstractPainter<Diagram<TextBoxElement>>
     }
 
     @Override
-    public Rectangle2D getDiagramBounds(Diagram<TextBoxElement> model) {
+    public Rectangle2D getDiagramBounds(Diagram<TextElement> model) {
         return diagramBounder.getBounds(model);
     }
 

@@ -9,10 +9,10 @@ import painter.IPainter;
 
 import renderer.IRenderer;
 import sketcher.Sketcher;
-import test.text.diagram.TextBoxElement;
-import test.text.model.TextBox;
+import test.text.diagram.TextElement;
+import test.text.model.Text;
 
-public class TextBoxListRenderer implements IRenderer<List<TextBox>> {
+public class TextBoxListRenderer implements IRenderer<List<Text>> {
     
     private Sketcher sketcher;
     
@@ -29,8 +29,8 @@ public class TextBoxListRenderer implements IRenderer<List<TextBox>> {
     }
 
     @Override
-    public void render(List<TextBox> model, Rectangle2D canvas) {
-        Diagram<TextBoxElement> diagram = sketcher.sketch(model, canvas);
+    public void render(List<Text> model, Rectangle2D canvas) {
+        Diagram<TextElement> diagram = sketcher.sketch(model, canvas);
         painter.paint(diagram, canvas);
     }
 

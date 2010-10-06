@@ -9,43 +9,43 @@ import painter.IBounder;
 
 import diagram.Diagram;
 import sketcher.AbstractSketcher;
-import test.text.diagram.TextBoxElement;
-import test.text.diagram.TextBoxListDiagram;
-import test.text.model.TextBox;
-import test.text.model.TextBoxBounder;
+import test.text.diagram.TextElement;
+import test.text.diagram.TextListDiagram;
+import test.text.model.Text;
+import test.text.model.TextBounder;
 
 public class TextBoxListSketcher 
-       extends AbstractSketcher<List<TextBox>, TextBoxElement> {
+       extends AbstractSketcher<List<Text>, TextElement> {
     
     private double scale;
     
-    private IBounder<List<TextBox>> modelBounder;
+    private IBounder<List<Text>> modelBounder;
     
     public TextBoxListSketcher() {
-        modelBounder = new TextBoxBounder();
+        modelBounder = new TextBounder();
     }
 
     @Override
-    public Diagram<TextBoxElement> sketch(List<TextBox> textBoxes, Rectangle2D canvas) {
+    public Diagram<TextElement> sketch(List<Text> textBoxes, Rectangle2D canvas) {
         scale = getScale(textBoxes, canvas);
         Point2d center = getCenter(textBoxes);
         
         System.out.println("rough scale = " + scale + " model center = " + center);
         
-        Diagram<TextBoxElement> diagram = new TextBoxListDiagram();
+        Diagram<TextElement> diagram = new TextListDiagram();
         Point2d cc = new Point2d(canvas.getCenterX(), canvas.getCenterY());
-        for (TextBox textBox : textBoxes) {
+        for (Text textBox : textBoxes) {
             double x = ((textBox.center.x - center.x) * scale) + cc.x;
             double y = ((textBox.center.y - center.y) * scale) + cc.y;
             Point2d p = new Point2d(x, y);
-            TextBoxElement element = new TextBoxElement(textBox, p);
+            TextElement element = new TextElement(textBox, p);
             diagram.add(element);
         }
         return diagram;
     }
 
     @Override
-    public Rectangle2D getModelBounds(List<TextBox> model) {
+    public Rectangle2D getModelBounds(List<Text> model) {
         return modelBounder.getBounds(model);
     }
 }
