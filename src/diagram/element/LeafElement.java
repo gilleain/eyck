@@ -1,6 +1,8 @@
-package diagram;
+package diagram.element;
 
 import javax.vecmath.Point2d;
+
+import diagram.AbstractDiagramElement;
 
 /**
  * A diagram element that is given a center when constructed.

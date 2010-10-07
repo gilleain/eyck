@@ -9,7 +9,7 @@ import java.awt.geom.Rectangle2D;
 import javax.vecmath.Point2d;
 
 import diagram.IDiagram;
-import diagram.TextElement;
+import diagram.element.TextElement;
 
 import painter.AbstractPainter;
 import painter.IBounder;

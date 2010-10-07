@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import diagram.IDiagram;
-import diagram.TextElement;
+import diagram.element.TextElement;
 
 public class TextListDiagram implements IDiagram<TextElement> {
     

@@ -1,4 +1,4 @@
-package diagram;
+package diagram.element;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Set;
 
 import javax.vecmath.Point2d;
+
+import diagram.AbstractDiagramElement;
 
 public class ElementSet extends AbstractDiagramElement implements Iterable<IDiagramElement>{
     

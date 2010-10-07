@@ -2,6 +2,9 @@ package diagram;
 
 import java.util.List;
 
+import diagram.element.ElementSet;
+import diagram.element.IDiagramElement;
+
 public class ElementDiagram implements IDiagram<IDiagramElement> {
     
     private ElementSet root;

@@ -2,8 +2,8 @@ package test.boxtree.diagram;
 
 import java.util.List;
 
-import diagram.RectangleElement;
 import diagram.IDiagram;
+import diagram.element.RectangleElement;
 
 public class BoxDiagram implements IDiagram<RectangleElement> {
 

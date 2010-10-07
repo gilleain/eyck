@@ -6,6 +6,9 @@ import java.awt.geom.Rectangle2D;
 
 import javax.vecmath.Point2d;
 
+import diagram.element.IDiagramElement;
+import diagram.element.TextElement;
+
 import painter.IBounder;
 
 public class DiagramBounder implements IBounder<IDiagram<IDiagramElement>> {

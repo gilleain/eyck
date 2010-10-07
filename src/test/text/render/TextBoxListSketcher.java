@@ -8,7 +8,7 @@ import javax.vecmath.Point2d;
 import painter.IBounder;
 
 import diagram.IDiagram;
-import diagram.TextElement;
+import diagram.element.TextElement;
 import sketcher.AbstractSketcher;
 import test.text.diagram.TextListDiagram;
 import test.text.model.Text;

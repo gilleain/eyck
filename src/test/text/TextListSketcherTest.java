@@ -11,7 +11,7 @@ import javax.vecmath.Point2d;
 import org.junit.Test;
 
 import diagram.IDiagram;
-import diagram.TextElement;
+import diagram.element.TextElement;
 
 import test.text.diagram.TextListDiagramBounder;
 import test.text.model.Text;

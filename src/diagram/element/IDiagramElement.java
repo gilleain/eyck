@@ -1,4 +1,4 @@
-package diagram;
+package diagram.element;
 
 import java.awt.geom.Rectangle2D;
 

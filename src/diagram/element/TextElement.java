@@ -1,4 +1,4 @@
-package diagram;
+package diagram.element;
 
 import javax.vecmath.Point2d;
 

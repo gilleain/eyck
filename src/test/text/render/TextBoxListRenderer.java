@@ -4,7 +4,7 @@ import java.awt.geom.Rectangle2D;
 import java.util.List;
 
 import diagram.IDiagram;
-import diagram.TextElement;
+import diagram.element.TextElement;
 
 import painter.IPainter;
 
