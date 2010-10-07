@@ -6,9 +6,9 @@ import javax.vecmath.Point2d;
 
 public class LineElement extends LeafElement {
     
-    private Point2d a;
+    public Point2d a;
     
-    private Point2d b;
+    public Point2d b;
     
     public LineElement(Point2d a, Point2d b) {
         super(calculateCenter(a, b));
@@ -19,14 +19,19 @@ public class LineElement extends LeafElement {
     @Override
     public Rectangle2D getBounds() {
         // XXX TODO!
-        double w = a.x - b.x;
-        double h = a.y - b.y;
-        return new Rectangle2D.Double(a.x, b.x, w, h);
+        double w = Math.abs(a.x - b.x);
+        double h = Math.abs(a.y - b.y);
+        Rectangle2D r = new Rectangle2D.Double(a.x, b.x, w, h);
+        System.out.println("r = " + r);
+        return r;
     }
     
     private static Point2d calculateCenter(Point2d a, Point2d b) {
         Point2d c = new Point2d(a);
         c.interpolate(b, 0.5);
+        System.out.println(
+                String.format("center of (%2.2f, %2.2f) and (%2.2f, %2.2f) is (%2.2f, %2.2f) ",
+                        a.x, a.y, b.x, b.y, c.x, c.y));
         return c;
     }
 
