@@ -1,5 +1,6 @@
 package diagram;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import diagram.element.ElementSet;
@@ -16,7 +17,19 @@ public class ElementDiagram implements IDiagram<IDiagramElement> {
     @Override
     public List<IDiagramElement> getElements() {
         // TODO XXX this only returns the children of the root, not all elements!
-        return root.getElements();
+        List<IDiagramElement> all = new ArrayList<IDiagramElement>();
+        getElements(root, all);
+        return all;
+    }
+    
+    private void getElements(IDiagramElement element, List<IDiagramElement> all) {
+        if (element instanceof ElementSet) {
+            for (IDiagramElement child : ((ElementSet)element).getElements()) {
+                getElements(child, all);
+            }
+        } else {
+            all.add(element);
+        }
     }
 
     @Override
