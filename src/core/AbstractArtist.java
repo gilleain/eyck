@@ -2,6 +2,8 @@ package core;
 
 import java.awt.geom.Rectangle2D;
 
+import javax.vecmath.Point2d;
+
 public class AbstractArtist {
     
     public double getScale(Rectangle2D drawing, Rectangle2D canvas) {
@@ -20,6 +22,15 @@ public class AbstractArtist {
                 String.format(
                         "transforming ((%2.2f - %2.2f) * %2.2f) + %2.2f -> %2.2f",
                         coord, diagramCenter, scale, screenCenter, t));
+        return t;
+    }
+    
+    public Point2d transform(
+            Point2d p, Point2d diagramCenter, double scale, Point2d screenCenter) {
+        Point2d t = new Point2d(p);
+        t.sub(diagramCenter);
+        t.scale(scale);
+        t.add(screenCenter);
         return t;
     }
 

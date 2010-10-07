@@ -14,7 +14,7 @@ import javax.vecmath.Point2d;
 
 public class BasePaintingTest {
     
-  public static final int IMG_WIDTH = 200;
+    public static final int IMG_WIDTH = 200;
     
     public static final int IMG_HEIGHT = 200;
     
