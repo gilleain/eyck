@@ -18,12 +18,22 @@ public class LineElement extends LeafElement {
 
     @Override
     public Rectangle2D getBounds() {
-        // XXX TODO!
-        double w = Math.abs(a.x - b.x);
-        double h = Math.abs(a.y - b.y);
-        Rectangle2D r = new Rectangle2D.Double(a.x, b.x, w, h);
-        System.out.println("r = " + r);
-        return r;
+        double x, y, w, h;
+        if (a.x < b.x) {
+            x = a.x;
+            w = b.x - a.x;
+        } else {
+            x = b.x;
+            w = a.x - b.x;
+        }
+        if (a.y < b.y) {
+            y = a.y;
+            h = b.y - a.y;
+        } else {
+            y = b.y;
+            h = a.y - b.y;
+        }
+        return new Rectangle2D.Double(x, y, w, h);
     }
     
     private static Point2d calculateCenter(Point2d a, Point2d b) {
