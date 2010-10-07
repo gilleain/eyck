@@ -35,6 +35,12 @@ public class AbstractArtist {
         t.sub(diagramCenter);
         t.scale(scale);
         t.add(screenCenter);
+        System.out.println(
+                String.format(
+                        "transforming (((%2.2f, %2.2f) - (%2.2f, %2.2f)) * %2.2f)" +
+                        " + (%2.2f, %2.2f) -> (%2.2f, %2.2f)",
+                        p.x, p.y, diagramCenter.x, diagramCenter.y, scale, 
+                        screenCenter.x, screenCenter.y, t.x, t.y));
         return t;
     }
 
