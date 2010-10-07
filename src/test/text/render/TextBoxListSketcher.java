@@ -35,8 +35,8 @@ public class TextBoxListSketcher
         IDiagram<TextElement> diagram = new TextListDiagram();
         Point2d cc = new Point2d(canvas.getCenterX(), canvas.getCenterY());
         for (Text textBox : textBoxes) {
-            double x = ((textBox.center.x - center.x) * scale) + cc.x;
-            double y = ((textBox.center.y - center.y) * scale) + cc.y;
+            double x = transform(textBox.center.x, center.x, scale, cc.x);
+            double y = transform(textBox.center.y, center.y, scale, cc.y);
             Point2d p = new Point2d(x, y);
             TextElement element = new TextElement(textBox.text, p);
             diagram.add(element);

@@ -12,5 +12,15 @@ public class AbstractArtist {
         
         return Math.min(cW / bW, cH / bH);
     }
+    
+    public double transform(
+            double coord, double diagramCenter, double scale, double screenCenter) {
+        double t = ((coord - diagramCenter) * scale) + screenCenter;
+        System.out.println(
+                String.format(
+                        "transforming ((%2.2f - %2.2f) * %2.2f) + %2.2f -> %2.2f",
+                        coord, diagramCenter, scale, screenCenter, t));
+        return t;
+    }
 
 }

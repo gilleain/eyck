@@ -46,16 +46,6 @@ public class TextBoxListPainter extends AbstractPainter<IDiagram<TextElement>> {
         return new Point(x, y);
     }
     
-    public double transform(
-            double coord, double diagramCenter, double scale, double screenCenter) {
-        double t = ((coord - diagramCenter) * scale) + screenCenter;
-        System.out.println(
-                String.format(
-                        "transforming ((%2.2f - %2.2f) * %2.2f) + %2.2f -> %2.2f",
-                        coord, diagramCenter, scale, screenCenter, t));
-        return t;
-    }
-
     @Override
     public void paint(IDiagram<TextElement> textBoxDiagram, Rectangle2D canvas) {
         
