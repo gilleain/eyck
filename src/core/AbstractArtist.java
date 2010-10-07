@@ -15,6 +15,10 @@ public class AbstractArtist {
         return Math.min(cW / bW, cH / bH);
     }
     
+    public Point2d getCenter(Rectangle2D rectangle) {
+        return new Point2d(rectangle.getCenterX(), rectangle.getCenterY());
+    }
+    
     public double transform(
             double coord, double diagramCenter, double scale, double screenCenter) {
         double t = ((coord - diagramCenter) * scale) + screenCenter;
