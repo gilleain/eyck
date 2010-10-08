@@ -1,5 +1,6 @@
 package diagram.element;
 
+import java.awt.Color;
 import java.awt.geom.Rectangle2D;
 
 import javax.vecmath.Point2d;
@@ -11,9 +12,14 @@ public class LineElement extends LeafElement {
     public Point2d b;
     
     public LineElement(Point2d a, Point2d b) {
+        this(a, b, Color.BLACK);
+    }
+    
+    public LineElement(Point2d a, Point2d b, Color c) {
         super(calculateCenter(a, b));
         this.a = a;
         this.b = b;
+        color = c;
     }
 
     @Override
