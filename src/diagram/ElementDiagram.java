@@ -16,7 +16,6 @@ public class ElementDiagram implements IDiagram<IDiagramElement> {
 
     @Override
     public List<IDiagramElement> getElements() {
-        // TODO XXX this only returns the children of the root, not all elements!
         List<IDiagramElement> all = new ArrayList<IDiagramElement>();
         getElements(root, all);
         return all;
