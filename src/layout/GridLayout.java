@@ -10,6 +10,21 @@ public class GridLayout implements ILayout {
     
     private int cols;
     
+    public GridLayout(int n) {
+        rows = findLargestFactor(n);
+        cols = n / rows;
+    }
+    
+    private int findLargestFactor(int n) {
+        for (int i = (int)Math.sqrt(n); i >= 2; i--) {
+            if (n % i == 0) {
+                return i;
+            }
+        }
+        // n is prime
+        return 1;
+    }
+    
     public GridLayout(int rows, int cols) {
         this.rows = rows;
         this.cols = cols;
