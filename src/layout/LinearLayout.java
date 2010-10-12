@@ -14,6 +14,10 @@ public class LinearLayout implements ILayout {
     
     private int n;
     
+    public LinearLayout(int n) {
+        this(n, Axis.LEFT_RIGHT);
+    }
+    
     public LinearLayout(int n, Axis axis) {
         this.n = n;
         this.axis = axis;
