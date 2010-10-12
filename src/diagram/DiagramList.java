@@ -23,6 +23,10 @@ public class DiagramList implements IDiagramElement, IDiagram<IDiagramElement> {
     public void addDiagram(IDiagram<IDiagramElement> diagram) {
         diagrams.add(diagram);
     }
+    
+    public int size() {
+        return diagrams.size();
+    }
 
     @Override
     public List<IDiagramElement> getElements() {

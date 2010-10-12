@@ -1,9 +1,10 @@
 package layout;
 
 import java.awt.geom.Rectangle2D;
+import java.util.List;
 
-public interface ILayout<T> {
+public interface ILayout {
     
-    public void layout(T object, Rectangle2D canvas);
+    public List<Rectangle2D> layout(Rectangle2D canvas);
 
 }

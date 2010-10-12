@@ -1,13 +1,10 @@
 package layout;
 
 import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
 import java.util.List;
 
-import diagram.DiagramList;
-import diagram.IDiagram;
-import diagram.element.IDiagramElement;
-
-public class LinearLayout implements ILayout<DiagramList> {
+public class LinearLayout implements ILayout {
     
     public enum Axis { LEFT_RIGHT, TOP_BOTTOM };
     
@@ -15,25 +12,27 @@ public class LinearLayout implements ILayout<DiagramList> {
     
     private List<Rectangle2D> canvases;
     
-    public LinearLayout(Axis axis) {
+    private int n;
+    
+    public LinearLayout(int n, Axis axis) {
+        this.n = n;
         this.axis = axis;
     }
 
     @Override
-    public void layout(DiagramList diagramList, Rectangle2D canvas) {
-        List<IDiagram<IDiagramElement>> diagrams = diagramList.getDiagrams();
+    public List<Rectangle2D> layout(Rectangle2D canvas) {
         
         double dim;
         double centerX;
         double centerY;
         double axisCenter;
         if (axis == Axis.LEFT_RIGHT) {
-            dim = canvas.getWidth() / diagrams.size();
+            dim = canvas.getWidth() / n;
             centerX = dim / 2;
             centerY = canvas.getMinY();
             axisCenter = canvas.getCenterY();
         } else {
-            dim = canvas.getHeight() / diagrams.size();
+            dim = canvas.getHeight() / n;
             centerY = dim / 2;
             centerX = canvas.getMinX();
             axisCenter = canvas.getCenterX();
@@ -41,14 +40,15 @@ public class LinearLayout implements ILayout<DiagramList> {
         
         double halfDim = dim / 2;
         
-        for (IDiagram<IDiagramElement> diagram : diagrams) {
+        canvases = new ArrayList<Rectangle2D>();
+        for (int i = 0; i < n; i++) {
             double x;
             double y;
             if (axis == Axis.LEFT_RIGHT) {
                 x = centerX - halfDim;
-                y = axisCenter;
+                y = axisCenter - halfDim;
             } else {
-                x = axisCenter;
+                x = axisCenter - halfDim;
                 y = centerY - halfDim;
             }
             canvases.add(new Rectangle2D.Double(x, y, dim, dim));
@@ -58,6 +58,7 @@ public class LinearLayout implements ILayout<DiagramList> {
                 centerY += dim;
             }
         }
+        return canvases;
     }
 
 }
