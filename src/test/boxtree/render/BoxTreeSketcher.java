@@ -2,12 +2,13 @@ package test.boxtree.render;
 
 import java.awt.geom.Rectangle2D;
 
+import diagram.DiagramTree;
 import diagram.IDiagram;
-import sketcher.AbstractSketcher;
+import sketcher.CompositeSketcher;
 import test.boxtree.diagram.BoxElement;
 import test.boxtree.model.BoxTree;
 
-public class BoxTreeSketcher extends AbstractSketcher<BoxTree, BoxElement> {
+public class BoxTreeSketcher implements CompositeSketcher<BoxTree, BoxElement> {
     
     private BoxSketcher boxSketcher;
     
@@ -16,25 +17,23 @@ public class BoxTreeSketcher extends AbstractSketcher<BoxTree, BoxElement> {
     }
 
     @Override
-    public IDiagram<BoxElement> sketch(BoxTree boxTree, Rectangle2D canvas) {
-        IDiagram<BoxElement> boxDiagram = new BoxElement();
+    public DiagramTree<BoxElement> sketch(BoxTree boxTree, Rectangle2D canvas) {
+        DiagramTree<BoxElement> boxDiagram = new DiagramTree<BoxElement>();
         sketch(boxTree, boxDiagram, canvas);
         return boxDiagram;
     }
     
-    private void sketch(BoxTree node, IDiagram<BoxElement> diagram, Rectangle2D canvas) {
+    private void sketch(BoxTree node, DiagramTree<BoxElement> diagram, Rectangle2D canvas) {
         if (node.leaf != null) {
             IDiagram<BoxElement> leafDiagram = boxSketcher.sketch(node.leaf, canvas);
-            diagram.addAll(leafDiagram.getElements());
+            diagram.addDiagram(leafDiagram);
         }
         
         for (BoxTree child : node.children) {
-            diagram.add(new BoxElement(null));  /// XXX
             sketch(child, diagram, canvas);
         }
     }
 
-    @Override
     public Rectangle2D getModelBounds(BoxTree model) {
         // pass in null so that the union is made correctly
         Rectangle2D bounds = null;
@@ -46,9 +45,13 @@ public class BoxTreeSketcher extends AbstractSketcher<BoxTree, BoxElement> {
         if (model.leaf != null) {
             if (bounds == null) {
                 bounds = (Rectangle2D) model.leaf.rectangle.clone();
+            } else {
+                bounds.add(model.leaf.rectangle);
             }
         } else {
-            
+            for (BoxTree child : model.children) {
+                getModelBounds(child, bounds);
+            }
         }
     }
 
