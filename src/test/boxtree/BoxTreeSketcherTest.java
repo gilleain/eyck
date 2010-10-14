@@ -21,6 +21,30 @@ public class BoxTreeSketcherTest extends BasePaintingTest {
     
     public final double BOX_MODEL_HEIGHT = 10;
     
+    public BoxTree makeThreeLevelModel() {
+        BoxTree tree = new BoxTree();
+        
+        BoxTree subTreeA = new BoxTree();
+        BoxTree childAA = new BoxTree();
+        childAA.leaf = new Box(new Rectangle2D.Double(10, 10, BOX_MODEL_WIDTH, BOX_MODEL_HEIGHT));
+        subTreeA.children.add(childAA);
+        BoxTree childAB = new BoxTree();
+        childAB.leaf = new Box(new Rectangle2D.Double(110, 10, BOX_MODEL_WIDTH, BOX_MODEL_HEIGHT));
+        subTreeA.children.add(childAB);
+        tree.children.add(subTreeA);
+
+        BoxTree subTreeB = new BoxTree();
+        BoxTree childBA = new BoxTree();
+        childBA.leaf = new Box(new Rectangle2D.Double(10, 110, BOX_MODEL_WIDTH, BOX_MODEL_HEIGHT));
+        subTreeB.children.add(childBA);
+        BoxTree childBB = new BoxTree();
+        childBB.leaf = new Box(new Rectangle2D.Double(110, 110, BOX_MODEL_WIDTH, BOX_MODEL_HEIGHT));
+        subTreeB.children.add(childBB);
+        tree.children.add(subTreeB);
+        
+        return tree;
+    }
+    
     public BoxTree makeTwoLevelModel() {
         BoxTree tree = new BoxTree();
         
@@ -49,16 +73,24 @@ public class BoxTreeSketcherTest extends BasePaintingTest {
         }
     }
     
-    @Test
-    public void basicUsage() {
-        BoxTree model = makeTwoLevelModel();
+    public void testModel(BoxTree model, String name) {
         BoxTreeSketcher sketcher = new BoxTreeSketcher();
         
         Image image = getBlankTestImage();
         Graphics2D g = (Graphics2D) image.getGraphics();
         DiagramTree<BoxElement> diagram = sketcher.sketch(model, getCanvas());
         draw(diagram, g);
-        writeImage(image, "boxtree");
+        writeImage(image, name);
+    }
+    
+    @Test
+    public void twoLevelModelTest() {
+        testModel(makeTwoLevelModel(), "boxtree2level");
+    }
+    
+    @Test
+    public void threeLevelModelTest() {
+        testModel(makeThreeLevelModel(), "boxtree3level");
     }
 
 }
