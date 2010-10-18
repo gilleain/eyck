@@ -4,7 +4,7 @@ import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GridDivider implements IDivider {
+public class GridDivider extends AbstractDivider {
     
     private int rows;
     

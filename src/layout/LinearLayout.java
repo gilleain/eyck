@@ -11,7 +11,7 @@ import diagram.IDiagram;
 
 import painter.IBounder;
 
-public class LinearLayout<T> implements ILayout<T> {
+public class LinearLayout<T> extends AbstractLayout<T> {
 
     @Override
     public List<Point2d> layout(DiagramTree<T> tree, Point2d center, IBounder<IDiagram<T>> bounder) {

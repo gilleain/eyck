@@ -8,7 +8,6 @@ import layout.ILayout;
 
 
 import diagram.DiagramTree;
-import diagram.element.IDiagramElement;
 import divide.IDivider;
 
 public interface ICompositePainter<T> {
@@ -21,8 +20,7 @@ public interface ICompositePainter<T> {
      * @param canvas
      * @param divider
      */
-    public void paint(DiagramTree<IDiagramElement> compositeDiagram, 
-               Rectangle2D canvas, IDivider divider);
+    public void paint(DiagramTree<T> compositeDiagram, Rectangle2D canvas, IDivider divider);
 
     /**
      * Paint the composite diagram centered on the supplied point, using the 
@@ -32,6 +30,5 @@ public interface ICompositePainter<T> {
      * @param center
      * @param layout
      */
-    public void paint(DiagramTree<IDiagramElement> compositeDiagram, 
-            Point2d center, ILayout layout);
+    public void paint(DiagramTree<T> compositeDiagram, Point2d center, ILayout<T> layout);
 }

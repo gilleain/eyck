@@ -4,7 +4,7 @@ import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LinearDivider implements IDivider {
+public class LinearDivider extends AbstractDivider {
     
     public enum Axis { LEFT_RIGHT, TOP_BOTTOM };
     
@@ -30,9 +30,10 @@ public class LinearDivider implements IDivider {
         double centerX;
         double centerY;
         double axisCenter;
+        
         if (axis == Axis.LEFT_RIGHT) {
             dim = canvas.getWidth() / n;
-            centerX = dim / 2;
+            centerX = canvas.getMinX() + (dim / 2);
             centerY = canvas.getMinY();
             axisCenter = canvas.getCenterY();
         } else {
@@ -62,6 +63,7 @@ public class LinearDivider implements IDivider {
                 centerY += dim;
             }
         }
+        System.out.println("divided " + canvas + " into " + canvases);
         return canvases;
     }
 
