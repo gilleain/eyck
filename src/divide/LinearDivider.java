@@ -1,10 +1,10 @@
-package layout;
+package divide;
 
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LinearLayout implements ILayout {
+public class LinearDivider implements IDivider {
     
     public enum Axis { LEFT_RIGHT, TOP_BOTTOM };
     
@@ -14,17 +14,17 @@ public class LinearLayout implements ILayout {
     
     private int n;
     
-    public LinearLayout(int n) {
+    public LinearDivider(int n) {
         this(n, Axis.LEFT_RIGHT);
     }
     
-    public LinearLayout(int n, Axis axis) {
+    public LinearDivider(int n, Axis axis) {
         this.n = n;
         this.axis = axis;
     }
 
     @Override
-    public List<Rectangle2D> layout(Rectangle2D canvas) {
+    public List<Rectangle2D> divide(Rectangle2D canvas) {
         
         double dim;
         double centerX;

@@ -1,16 +1,16 @@
-package layout;
+package divide;
 
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GridLayout implements ILayout {
+public class GridDivider implements IDivider {
     
     private int rows;
     
     private int cols;
     
-    public GridLayout(int n) {
+    public GridDivider(int n) {
         rows = findLargestFactor(n);
         cols = n / rows;
     }
@@ -25,7 +25,7 @@ public class GridLayout implements ILayout {
         return 1;
     }
     
-    public GridLayout(int rows, int cols) {
+    public GridDivider(int rows, int cols) {
         this.rows = rows;
         this.cols = cols;
     }
@@ -39,7 +39,7 @@ public class GridLayout implements ILayout {
     }
 
     @Override
-    public List<Rectangle2D> layout(Rectangle2D canvas) {
+    public List<Rectangle2D> divide(Rectangle2D canvas) {
         double colWidth = canvas.getWidth() / cols;
         double rowHeight = canvas.getHeight() / rows;
         

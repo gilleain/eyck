@@ -2,14 +2,14 @@ package painter;
 
 import java.awt.geom.Rectangle2D;
 
-import layout.ILayout;
 
 import diagram.DiagramTree;
 import diagram.element.IDiagramElement;
+import divide.IDivider;
 
 public interface ICompositePainter<T> {
     
     void paint(DiagramTree<IDiagramElement> compositeDiagram, 
-               Rectangle2D canvas, ILayout layout);
+               Rectangle2D canvas, IDivider divider);
 
 }
