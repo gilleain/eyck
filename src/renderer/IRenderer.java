@@ -2,6 +2,8 @@ package renderer;
 
 import java.awt.geom.Rectangle2D;
 
+import javax.vecmath.Point2d;
+
 import painter.IPainter;
 import sketcher.Sketcher;
 
@@ -19,6 +21,20 @@ public interface IRenderer<T> {
     
     public void setPainter(IPainter painter);
     
+    /**
+     * Render the model to fit into the canvas.
+     * 
+     * @param model the object to render
+     * @param canvas the area defined as the canvas
+     */
     public void render(T model, Rectangle2D canvas);
+    
+    /**
+     * Render the model at some 'natural' scale, centered on the point.
+     * 
+     * @param model the object to render
+     * @param center the central point to render at
+     */
+    public void render(T model, Point2d center);
 
 }

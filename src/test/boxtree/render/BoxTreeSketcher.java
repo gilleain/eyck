@@ -2,6 +2,8 @@ package test.boxtree.render;
 
 import java.awt.geom.Rectangle2D;
 
+import javax.vecmath.Point2d;
+
 import diagram.DiagramTree;
 import diagram.IDiagram;
 import sketcher.CompositeSketcher;
@@ -53,6 +55,12 @@ public class BoxTreeSketcher implements CompositeSketcher<BoxTree, BoxElement> {
                 getModelBounds(child, bounds);
             }
         }
+    }
+
+    @Override
+    public DiagramTree<BoxElement> sketch(BoxTree compositeObject, Point2d point) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

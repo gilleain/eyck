@@ -3,6 +3,8 @@ package test.text.render;
 import java.awt.geom.Rectangle2D;
 import java.util.List;
 
+import javax.vecmath.Point2d;
+
 import diagram.IDiagram;
 import diagram.element.TextElement;
 
@@ -32,6 +34,12 @@ public class TextBoxListRenderer implements IRenderer<List<Text>> {
     public void render(List<Text> model, Rectangle2D canvas) {
         IDiagram<TextElement> diagram = sketcher.sketch(model, canvas);
         painter.paint(diagram, canvas);
+    }
+
+    @Override
+    public void render(List<Text> model, Point2d center) {
+        // TODO Auto-generated method stub
+        
     }
 
 }

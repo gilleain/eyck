@@ -48,4 +48,10 @@ public class TextBoxListSketcher
     public Rectangle2D getModelBounds(List<Text> model) {
         return modelBounder.getBounds(model);
     }
+
+    @Override
+    public IDiagram<TextElement> sketch(List<Text> modelObject, Point2d center) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }
