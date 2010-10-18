@@ -32,7 +32,7 @@ public class TextBoxListRenderer implements IRenderer<List<Text>> {
 
     @Override
     public void render(List<Text> model, Rectangle2D canvas) {
-        IDiagram<TextElement> diagram = sketcher.sketch(model, canvas);
+        IDiagram<TextElement> diagram = sketcher.sketch(model);
         painter.paint(diagram, canvas);
     }
 

@@ -78,7 +78,7 @@ public class BoxTreeSketcherTest extends BasePaintingTest {
         
         Image image = getBlankTestImage();
         Graphics2D g = (Graphics2D) image.getGraphics();
-        DiagramTree<BoxElement> diagram = sketcher.sketch(model, getCanvas());
+        DiagramTree<BoxElement> diagram = sketcher.sketch(model);
         draw(diagram, g);
         writeImage(image, name);
     }

@@ -26,14 +26,14 @@ public class TextBoxListSketcher
     }
 
     @Override
-    public IDiagram<TextElement> sketch(List<Text> textBoxes, Rectangle2D canvas) {
-        scale = getScale(textBoxes, canvas);
+    public IDiagram<TextElement> sketch(List<Text> textBoxes) {
+        scale = 1.0;
         Point2d center = getCenter(textBoxes);
         
         System.out.println("rough scale = " + scale + " model center = " + center);
         
         IDiagram<TextElement> diagram = new TextListDiagram();
-        Point2d cc = new Point2d(canvas.getCenterX(), canvas.getCenterY());
+        Point2d cc = new Point2d(0, 0);
         for (Text textBox : textBoxes) {
             double x = transform(textBox.center.x, center.x, scale, cc.x);
             double y = transform(textBox.center.y, center.y, scale, cc.y);
@@ -49,9 +49,4 @@ public class TextBoxListSketcher
         return modelBounder.getBounds(model);
     }
 
-    @Override
-    public IDiagram<TextElement> sketch(List<Text> modelObject, Point2d center) {
-        // TODO Auto-generated method stub
-        return null;
-    }
 }

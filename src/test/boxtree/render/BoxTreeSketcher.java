@@ -2,8 +2,6 @@ package test.boxtree.render;
 
 import java.awt.geom.Rectangle2D;
 
-import javax.vecmath.Point2d;
-
 import diagram.DiagramTree;
 import diagram.IDiagram;
 import sketcher.CompositeSketcher;
@@ -19,20 +17,20 @@ public class BoxTreeSketcher implements CompositeSketcher<BoxTree, BoxElement> {
     }
 
     @Override
-    public DiagramTree<BoxElement> sketch(BoxTree boxTree, Rectangle2D canvas) {
+    public DiagramTree<BoxElement> sketch(BoxTree boxTree) {
         DiagramTree<BoxElement> boxDiagram = new DiagramTree<BoxElement>();
-        sketch(boxTree, boxDiagram, canvas);
+        sketch(boxTree, boxDiagram);
         return boxDiagram;
     }
     
-    private void sketch(BoxTree node, DiagramTree<BoxElement> diagram, Rectangle2D canvas) {
+    private void sketch(BoxTree node, DiagramTree<BoxElement> diagram) {
         if (node.leaf != null) {
-            IDiagram<BoxElement> leafDiagram = boxSketcher.sketch(node.leaf, canvas);
+            IDiagram<BoxElement> leafDiagram = boxSketcher.sketch(node.leaf);
             diagram.addDiagram(leafDiagram);
         }
         
         for (BoxTree child : node.children) {
-            sketch(child, diagram, canvas);
+            sketch(child, diagram);
         }
     }
 
@@ -56,11 +54,4 @@ public class BoxTreeSketcher implements CompositeSketcher<BoxTree, BoxElement> {
             }
         }
     }
-
-    @Override
-    public DiagramTree<BoxElement> sketch(BoxTree compositeObject, Point2d point) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
 }

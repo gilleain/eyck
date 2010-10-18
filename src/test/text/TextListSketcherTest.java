@@ -33,7 +33,7 @@ public class TextListSketcherTest extends BaseTextListTest {
     public void sketchModel(List<Text> model, String filename) {
         Image image = getBlankTestImage();
         TextBoxListSketcher sketcher = new TextBoxListSketcher();
-        IDiagram<TextElement> diagram = sketcher.sketch(model, getCanvas());
+        IDiagram<TextElement> diagram = sketcher.sketch(model);
         paint(diagram, image);
         writeImage(image, filename);
     }
