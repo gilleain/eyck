@@ -1,19 +1,19 @@
 package renderer;
 
-import painter.IPainter;
+import painter.ICompositePainter;
 import sketcher.CompositeSketcher;
 
 public abstract class AbstractCompositeRenderer<T> implements ICompositeRenderer<T> {
     
     protected CompositeSketcher sketcher;
     
-    protected IPainter painter;
+    protected ICompositePainter painter;
     
     public void setCompositeSketcher(CompositeSketcher sketcher) {
         this.sketcher = sketcher;
     }
     
-    public void setPainter(IPainter painter) {
+    public void setCompositePainter(ICompositePainter painter) {
         this.painter = painter;
     }
 

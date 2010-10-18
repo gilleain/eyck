@@ -4,14 +4,14 @@ import java.awt.geom.Rectangle2D;
 
 import javax.vecmath.Point2d;
 
-import painter.IPainter;
+import painter.ICompositePainter;
 import sketcher.CompositeSketcher;
 
 public interface ICompositeRenderer<T> {
     
     public void setCompositeSketcher(CompositeSketcher sketcher);
     
-    public void setPainter(IPainter painter);
+    public void setCompositePainter(ICompositePainter painter);
 
     public void render(T object, Rectangle2D canvas);
     
