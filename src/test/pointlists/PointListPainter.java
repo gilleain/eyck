@@ -53,4 +53,10 @@ public class PointListPainter extends AbstractPainter<List<Point2d>> {
         return bounder.getBounds(model);
     }
 
+    @Override
+    public void paint(List<Point2d> object, Point2d center) {
+        // TODO Auto-generated method stub
+        
+    }
+
 }

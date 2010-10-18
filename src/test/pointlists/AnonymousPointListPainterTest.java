@@ -33,6 +33,12 @@ public class AnonymousPointListPainterTest extends BasePaintingTest {
                     graphics.fillOval(x, y, 2 * d, 2 * d);
                 }
             }
+
+            @Override
+            public void paint(List<Point2d> object, Point2d center) {
+                // TODO Auto-generated method stub
+                
+            }
         };
         
         List<Point2d> pointList = 
@@ -79,6 +85,12 @@ public class AnonymousPointListPainterTest extends BasePaintingTest {
                     int y = (int)(point.y * scale) - d;
                     graphics.fillOval(x, y, 2 * d, 2 * d);
                 }
+            }
+
+            @Override
+            public void paint(List<Point2d> object, Point2d center) {
+                // TODO Auto-generated method stub
+                
             }
         };
         Rectangle2D canvas = new Rectangle2D.Double(0, 0, IMG_WIDTH, IMG_HEIGHT);

@@ -70,4 +70,10 @@ public class TextBoxListPainter extends AbstractPainter<IDiagram<TextElement>> {
         return diagramBounder.getBounds(model);
     }
 
+    @Override
+    public void paint(IDiagram<TextElement> object, Point2d center) {
+        // TODO Auto-generated method stub
+        
+    }
+
 }
