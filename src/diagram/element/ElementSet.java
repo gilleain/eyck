@@ -1,5 +1,6 @@
 package diagram.element;
 
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -20,8 +21,21 @@ public class ElementSet extends AbstractDiagramElement implements Iterable<IDiag
 
     @Override
     public Point2d getCenter() {
-        // TODO Auto-generated method stub
-        return null;
+        Rectangle2D bounds = calculateBounds();
+        return new Point2d(bounds.getCenterX(), bounds.getCenterY());
+    }
+    
+    public Rectangle2D calculateBounds() {
+        Rectangle2D bounds = null;
+        for (IDiagramElement child : children) {
+            Rectangle2D childBounds = child.getBounds();
+            if (bounds == null) {
+                bounds = (Rectangle2D) childBounds.clone();
+            } else {
+                bounds.add(childBounds);
+            }
+        }
+        return bounds;
     }
 
     @Override
@@ -34,6 +48,20 @@ public class ElementSet extends AbstractDiagramElement implements Iterable<IDiag
     }
     
     public List<IDiagramElement> getElements() {
+        return new ArrayList<IDiagramElement>(children);
+    }
+
+    @Override
+    public int size() {
+        int totalSize = 0;
+        for (IDiagramElement child : children) {
+            totalSize += child.size();
+        }
+        return totalSize;
+    }
+
+    @Override
+    public List<IDiagramElement> getChildren() {
         return new ArrayList<IDiagramElement>(children);
     }
     

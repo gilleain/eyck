@@ -6,21 +6,21 @@ import java.util.List;
 
 import javax.vecmath.Point2d;
 
-import diagram.DiagramTree;
-import diagram.IDiagram;
+import diagram.element.IDiagramElement;
 
 import painter.IBounder;
 
-public class LinearLayout<T> extends AbstractLayout<T> {
+public class LinearLayout extends AbstractLayout {
 
     @Override
-    public List<Point2d> layout(DiagramTree<T> tree, Point2d center, IBounder<IDiagram<T>> bounder) {
+    public List<Point2d> layout(
+            IDiagramElement diagram, Point2d center, IBounder<IDiagramElement> bounder) {
         List<Point2d> points = new ArrayList<Point2d>();
         
         double totalDimension = 0;
         List<Rectangle2D> boundsList = new ArrayList<Rectangle2D>();
-        for (IDiagram<T> diagram : tree.getDiagrams()) {
-            Rectangle2D bounds = bounder.getBounds(diagram);
+        for (IDiagramElement element : diagram.getChildren()) {
+            Rectangle2D bounds = bounder.getBounds(element);
             boundsList.add(bounds);
             
             // for now, just add up the widths

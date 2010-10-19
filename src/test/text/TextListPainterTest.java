@@ -9,17 +9,15 @@ import javax.vecmath.Point2d;
 
 import org.junit.Test;
 
-import diagram.IDiagram;
 import diagram.element.TextElement;
 
-import test.text.diagram.TextListDiagram;
 import test.text.model.Text;
 import test.text.model.TextBounder;
 import test.text.render.TextBoxListPainter;
 
 public class TextListPainterTest extends BaseTextListTest {
     
-    public IDiagram<TextElement> makeDiagram(List<Text> model) {
+    public TextElement makeDiagram(List<Text> model) {
         TextBounder bounder = new TextBounder();
         Rectangle2D modelBounds = bounder.getBounds(model);
         Point2d mc = new Point2d(modelBounds.getCenterX(), modelBounds.getCenterY());
@@ -29,7 +27,7 @@ public class TextListPainterTest extends BaseTextListTest {
         double scale = Math.min(canvas.getWidth() / modelBounds.getWidth(),
                                 canvas.getHeight() / modelBounds.getHeight());
         
-        IDiagram<TextElement> diagram = new TextListDiagram();
+        TextElement diagram = new TextElement();
         for (Text textBox : model) {
             double x = ((textBox.center.x - mc.x) * scale) + cc.x;
             double y = ((textBox.center.y - mc.y) * scale) + cc.y;
@@ -43,7 +41,7 @@ public class TextListPainterTest extends BaseTextListTest {
     public void basicUsage() {
         // make the 'model', but in screen space
         List<Point2d> points = getRandomPointsInScreenSpace(IMG_WIDTH, IMG_HEIGHT, 5);
-        IDiagram<TextElement> textBoxes = new TextListDiagram();
+        TextElement textBoxes = new TextElement();
         for (int i = 0; i < points.size(); i++) {
             Point2d p = points.get(i);
             String letter = alphabet.substring(i, i + 1);
@@ -61,7 +59,7 @@ public class TextListPainterTest extends BaseTextListTest {
     @Test
     public void letterPairTest() {
         List<Text> model = makeLetterPairModel();
-        IDiagram<TextElement> diagram = makeDiagram(model);
+        TextElement diagram = makeDiagram(model);
         
         Image image = getBlankTestImage();
         Graphics g = image.getGraphics();

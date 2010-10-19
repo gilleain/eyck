@@ -7,10 +7,8 @@ import javax.vecmath.Point2d;
 
 import painter.IBounder;
 
-import diagram.IDiagram;
 import diagram.element.TextElement;
 import sketcher.AbstractSketcher;
-import test.text.diagram.TextListDiagram;
 import test.text.model.Text;
 import test.text.model.TextBounder;
 
@@ -26,13 +24,13 @@ public class TextBoxListSketcher
     }
 
     @Override
-    public IDiagram<TextElement> sketch(List<Text> textBoxes) {
+    public TextElement sketch(List<Text> textBoxes) {
         scale = 1.0;
         Point2d center = getCenter(textBoxes);
         
         System.out.println("rough scale = " + scale + " model center = " + center);
         
-        IDiagram<TextElement> diagram = new TextListDiagram();
+        TextElement diagram = new TextElement();
         Point2d cc = new Point2d(0, 0);
         for (Text textBox : textBoxes) {
             double x = transform(textBox.center.x, center.x, scale, cc.x);

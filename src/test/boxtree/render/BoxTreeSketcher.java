@@ -2,8 +2,6 @@ package test.boxtree.render;
 
 import java.awt.geom.Rectangle2D;
 
-import diagram.DiagramTree;
-import diagram.IDiagram;
 import sketcher.CompositeSketcher;
 import test.boxtree.diagram.BoxElement;
 import test.boxtree.model.BoxTree;
@@ -17,16 +15,16 @@ public class BoxTreeSketcher implements CompositeSketcher<BoxTree, BoxElement> {
     }
 
     @Override
-    public DiagramTree<BoxElement> sketch(BoxTree boxTree) {
-        DiagramTree<BoxElement> boxDiagram = new DiagramTree<BoxElement>();
+    public BoxElement sketch(BoxTree boxTree) {
+        BoxElement boxDiagram = new BoxElement();
         sketch(boxTree, boxDiagram);
         return boxDiagram;
     }
     
-    private void sketch(BoxTree node, DiagramTree<BoxElement> diagram) {
+    private void sketch(BoxTree node, BoxElement diagram) {
         if (node.leaf != null) {
-            IDiagram<BoxElement> leafDiagram = boxSketcher.sketch(node.leaf);
-            diagram.addDiagram(leafDiagram);
+            BoxElement leafDiagram = boxSketcher.sketch(node.leaf);
+            diagram.add(leafDiagram);
         }
         
         for (BoxTree child : node.children) {

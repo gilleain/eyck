@@ -11,7 +11,7 @@ import diagram.element.TextElement;
 
 import painter.IBounder;
 
-public class DiagramBounder implements IBounder<IDiagram<IDiagramElement>> {
+public class DiagramBounder implements IBounder<IDiagramElement> {
     
  private Graphics graphics;
     
@@ -20,10 +20,10 @@ public class DiagramBounder implements IBounder<IDiagram<IDiagramElement>> {
     }
 
     @Override
-    public Rectangle2D getBounds(IDiagram<IDiagramElement> diagram) {
+    public Rectangle2D getBounds(IDiagramElement diagram) {
         Rectangle2D bounds = null;
         FontMetrics metrics = graphics.getFontMetrics();
-        for (IDiagramElement element : diagram.getElements()) {
+        for (IDiagramElement element : diagram.getChildren()) {
             Rectangle2D elementBounds = element.getBounds();
             if (element instanceof TextElement) {
                 elementBounds = getBounds((TextElement) element, metrics);

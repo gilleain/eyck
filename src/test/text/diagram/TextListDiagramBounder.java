@@ -6,13 +6,11 @@ import java.awt.geom.Rectangle2D;
 
 import javax.vecmath.Point2d;
 
-import diagram.IDiagram;
 import diagram.element.TextElement;
 
 import painter.IBounder;
 
-public class TextListDiagramBounder implements
-        IBounder<IDiagram<TextElement>> {
+public class TextListDiagramBounder implements IBounder<TextElement> {
     
     private Graphics graphics;
     
@@ -21,7 +19,7 @@ public class TextListDiagramBounder implements
     }
 
     @Override
-    public Rectangle2D getBounds(IDiagram<TextElement> diagram) {
+    public Rectangle2D getBounds(TextElement diagram) {
         Rectangle2D bounds = null;
         FontMetrics metrics = graphics.getFontMetrics();
         for (TextElement textBoxElement : diagram.getElements()) {

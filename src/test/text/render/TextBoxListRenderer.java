@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.vecmath.Point2d;
 
-import diagram.IDiagram;
 import diagram.element.TextElement;
 
 import painter.IPainter;
@@ -32,7 +31,7 @@ public class TextBoxListRenderer implements IRenderer<List<Text>> {
 
     @Override
     public void render(List<Text> model, Rectangle2D canvas) {
-        IDiagram<TextElement> diagram = sketcher.sketch(model);
+        TextElement diagram = (TextElement) sketcher.sketch(model); // TODO FIXME
         painter.paint(diagram, canvas);
     }
 

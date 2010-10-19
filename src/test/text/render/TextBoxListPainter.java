@@ -8,16 +8,15 @@ import java.awt.geom.Rectangle2D;
 
 import javax.vecmath.Point2d;
 
-import diagram.IDiagram;
 import diagram.element.TextElement;
 
 import painter.AbstractPainter;
 import painter.IBounder;
 import test.text.diagram.TextListDiagramBounder;
 
-public class TextBoxListPainter extends AbstractPainter<IDiagram<TextElement>> {
+public class TextBoxListPainter extends AbstractPainter<TextElement> {
     
-    private IBounder<IDiagram<TextElement>> diagramBounder;
+    private IBounder<TextElement> diagramBounder;
     
     private Graphics2D graphics;
     
@@ -47,7 +46,7 @@ public class TextBoxListPainter extends AbstractPainter<IDiagram<TextElement>> {
     }
     
     @Override
-    public void paint(IDiagram<TextElement> textBoxDiagram, Rectangle2D canvas) {
+    public void paint(TextElement textBoxDiagram, Rectangle2D canvas) {
         
         double scale = getScale(textBoxDiagram, canvas);
         Point2d center = getCenter(textBoxDiagram);
@@ -66,12 +65,12 @@ public class TextBoxListPainter extends AbstractPainter<IDiagram<TextElement>> {
     }
 
     @Override
-    public Rectangle2D getDiagramBounds(IDiagram<TextElement> model) {
+    public Rectangle2D getDiagramBounds(TextElement model) {
         return diagramBounder.getBounds(model);
     }
 
     @Override
-    public void paint(IDiagram<TextElement> object, Point2d center) {
+    public void paint(TextElement object, Point2d center) {
         // TODO Auto-generated method stub
         
     }

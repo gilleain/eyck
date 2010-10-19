@@ -1,6 +1,7 @@
 package diagram.element;
 
 import java.awt.Color;
+import java.util.List;
 
 import javax.vecmath.Point2d;
 
@@ -16,6 +17,16 @@ public class TextElement extends LeafElement {
         super(center);
         this.text = text;
         this.color = color;
+    }
+
+    public TextElement() {
+        super(null);
+        // TODO Auto-generated constructor stub
+    }
+
+    public List<TextElement> getElements() {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

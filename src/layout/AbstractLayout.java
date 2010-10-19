@@ -3,19 +3,19 @@ package layout;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractLayout<T> implements ILayout<T> {
+public abstract class AbstractLayout implements ILayout {
     
-    private List<ILayout<T>> subLayouts;
+    private List<ILayout> subLayouts;
     
     public AbstractLayout() {
-        subLayouts = new ArrayList<ILayout<T>>();
+        subLayouts = new ArrayList<ILayout>();
     }
     
-    public void addSubLayout(ILayout<T> subLayout) {
+    public void addSubLayout(ILayout subLayout) {
         subLayouts.add(subLayout);
     }
     
-    public List<ILayout<T>> getSubLayouts() {
+    public List<ILayout> getSubLayouts() {
         return subLayouts;
     }
 

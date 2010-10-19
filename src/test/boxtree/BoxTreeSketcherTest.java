@@ -6,9 +6,6 @@ import java.awt.geom.Rectangle2D;
 
 import org.junit.Test;
 
-import diagram.DiagramTree;
-import diagram.IDiagram;
-
 import test.BasePaintingTest;
 import test.boxtree.diagram.BoxElement;
 import test.boxtree.model.Box;
@@ -61,14 +58,9 @@ public class BoxTreeSketcherTest extends BasePaintingTest {
         return tree;
     }
     
-    public void draw(DiagramTree<BoxElement> tree, Graphics2D g) {
-        for (IDiagram<BoxElement> diagram : tree.getDiagrams()) {
-            for (BoxElement element : diagram.getElements()) {
-                g.draw(element.bounds);
-            }
-        }
-        
-        for (DiagramTree<BoxElement> child : tree.getChildren()) {
+    public void draw(BoxElement tree, Graphics2D g) {
+        g.draw(tree.bounds);
+        for (BoxElement child : tree.getChildren()) {
             draw(child, g);
         }
     }
@@ -78,7 +70,7 @@ public class BoxTreeSketcherTest extends BasePaintingTest {
         
         Image image = getBlankTestImage();
         Graphics2D g = (Graphics2D) image.getGraphics();
-        DiagramTree<BoxElement> diagram = sketcher.sketch(model);
+        BoxElement diagram = sketcher.sketch(model);
         draw(diagram, g);
         writeImage(image, name);
     }

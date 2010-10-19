@@ -4,18 +4,18 @@ import java.util.List;
 
 import javax.vecmath.Point2d;
 
-import diagram.DiagramTree;
-import diagram.IDiagram;
+import diagram.element.IDiagramElement;
 
 import painter.IBounder;
 
-public interface ILayout<T> {
+public interface ILayout {
     
-    public List<Point2d> layout(
-            DiagramTree<T> obj, Point2d center, IBounder<IDiagram<T>> bounder);
+    public List<Point2d> layout(IDiagramElement obj, 
+                                Point2d center, 
+                                IBounder<IDiagramElement> bounder);
     
-    public void addSubLayout(ILayout<T> subLayout);
+    public void addSubLayout(ILayout subLayout);
     
-    public List<ILayout<T>> getSubLayouts();
+    public List<ILayout> getSubLayouts();
 
 }

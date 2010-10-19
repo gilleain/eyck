@@ -1,7 +1,5 @@
 package sketcher;
 
-import diagram.IDiagram;
-
 /**
  * Produces diagrams from model objects.
  * 
@@ -19,6 +17,6 @@ public interface Sketcher<T, S> {
      * @param canvas the canvas to sketch on
      * @return a diagram
      */
-    public IDiagram<S> sketch(T modelObject);
+    public S sketch(T modelObject);
 
 }
