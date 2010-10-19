@@ -40,7 +40,11 @@ public class DiagramBounder implements IBounder<IDiagramElement> {
             }
         }
         
-        return bounds;
+        if (bounds == null) {
+            return new Rectangle2D.Double();
+        } else {
+            return bounds;
+        }
     }
 
     private Rectangle2D getBounds(TextElement element, FontMetrics metrics) {

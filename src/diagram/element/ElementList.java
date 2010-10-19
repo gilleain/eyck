@@ -2,30 +2,28 @@ package diagram.element;
 
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import javax.vecmath.Point2d;
 
 import diagram.AbstractDiagramElement;
 
-public class ElementSet extends AbstractDiagramElement implements Iterable<IDiagramElement>{
+public class ElementList extends AbstractDiagramElement implements Iterable<IDiagramElement>{
     
-    private Set<IDiagramElement> children;
+    private List<IDiagramElement> children;
 
-    public ElementSet() {
-        children = new HashSet<IDiagramElement>();
+    public ElementList() {
+        children = new ArrayList<IDiagramElement>();
     }
 
     @Override
     public Point2d getCenter() {
-        Rectangle2D bounds = calculateBounds();
+        Rectangle2D bounds = getBounds();
         return new Point2d(bounds.getCenterX(), bounds.getCenterY());
     }
     
-    public Rectangle2D calculateBounds() {
+    public Rectangle2D getBounds() {
         Rectangle2D bounds = null;
         for (IDiagramElement child : children) {
             Rectangle2D childBounds = child.getBounds();
