@@ -1,5 +1,6 @@
 package layout;
 
+import java.awt.Dimension;
 import java.util.List;
 
 import javax.vecmath.Point2d;
@@ -17,5 +18,8 @@ public interface ILayout {
     public void addSubLayout(ILayout subLayout);
     
     public List<ILayout> getSubLayouts();
+    
+    public Dimension getDimensions(
+            IDiagramElement element, IBounder<IDiagramElement> bounder);
 
 }

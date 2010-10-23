@@ -1,5 +1,6 @@
 package layout;
 
+import java.awt.Dimension;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,44 @@ import diagram.element.IDiagramElement;
 import painter.IBounder;
 
 public class LinearLayout extends AbstractLayout {
+    
+    public enum Axis { LEFT_RIGHT, TOP_BOTTOM };
+    
+    private Axis axis;
+    
+    private List<Rectangle2D> boundsList;
+    
+    public LinearLayout() {
+        this(Axis.LEFT_RIGHT);
+    }
+    
+    public LinearLayout(Axis axis) {
+        boundsList = new ArrayList<Rectangle2D>();
+        this.axis = axis;
+    }
+    
+    public void layout3(IDiagramElement diagram, Point2d center, IBounder<IDiagramElement> bounder) {
+        int i = 0;
+        for (ILayout subLayout : getSubLayouts()) {
+            IDiagramElement element = diagram.getChildren().get(i);
+            Dimension d = subLayout.getDimensions(element, bounder);
+            if (axis == Axis.LEFT_RIGHT) {
+                
+            } else {
+                
+            }
+        }
+    }
+    
+    public List<Rectangle2D> layout_alt(IDiagramElement diagram, Point2d center, IBounder<IDiagramElement> bounder) {
+        if (isLeaf()) {
+            layout(diagram, center, bounder);
+            return boundsList;
+        } else {
+            List<Rectangle2D> childBounds = null;
+            return boundsList;
+        }
+    }
 
     @Override
     public List<Point2d> layout(
@@ -18,7 +57,7 @@ public class LinearLayout extends AbstractLayout {
         List<Point2d> points = new ArrayList<Point2d>();
         
         double totalDimension = 0;
-        List<Rectangle2D> boundsList = new ArrayList<Rectangle2D>();
+        boundsList.clear();
         for (IDiagramElement element : diagram.getChildren()) {
             Rectangle2D bounds = bounder.getBounds(element);
             boundsList.add(bounds);
