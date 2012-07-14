@@ -1,0 +1,52 @@
+package awt;
+
+import java.awt.Graphics;
+import java.awt.geom.Rectangle2D;
+import java.util.List;
+
+import javax.vecmath.Point2d;
+
+import layout.ILayout;
+import painter.ICompositePainter;
+import awt.BasicAWTPainter;
+import diagram.DiagramBounder;
+import diagram.element.IDiagramElement;
+import divide.IDivider;
+
+public class CompositeAWTPainter implements ICompositePainter<IDiagramElement> {
+    
+    private BasicAWTPainter subPainter;
+    
+    private DiagramBounder bounder;
+    
+    public CompositeAWTPainter(Graphics g) {
+        subPainter = new BasicAWTPainter(g);
+        bounder = new DiagramBounder(g);
+    }
+
+    @Override
+    public void paint(IDiagramElement compositeDiagram,
+                      Rectangle2D canvas, 
+                      IDivider divider) {
+        List<Rectangle2D> canvases = divider.divide(canvas);
+        int i = 0;
+        for (IDiagramElement diagram : compositeDiagram.getChildren()) {
+            subPainter.paint(diagram, canvases.get(i));
+            i++;
+        }
+    }
+
+    @Override
+    public void paint(IDiagramElement compositeDiagram,
+                      Point2d center, 
+                      ILayout layout) {
+        List<Point2d> centers = layout.layout(compositeDiagram, center, bounder);
+        System.out.println("next level of centers : " + centers);
+        int i = 0;
+        for (IDiagramElement diagram : compositeDiagram.getChildren()) {
+            subPainter.paint(diagram, centers.get(i));
+            i++;
+        }
+    }
+
+}
