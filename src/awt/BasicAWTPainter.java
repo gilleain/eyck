@@ -12,6 +12,7 @@ import javax.vecmath.Point2d;
 
 import painter.AbstractPainter;
 import diagram.DiagramBounder;
+import diagram.element.CircleElement;
 import diagram.element.ElementList;
 import diagram.element.IDiagramElement;
 import diagram.element.LineElement;
@@ -76,8 +77,16 @@ public class BasicAWTPainter extends AbstractPainter<IDiagramElement> {
 				handleLineElement((LineElement) element, diagramCenter, scale, canvasCenter);
 			} else if (element instanceof ElementList) {
 				paintRecursively(element, diagramCenter, scale, canvasCenter);
+			} else if (element instanceof CircleElement) {
+				handleCircleElement((CircleElement)element, elementCenter);
 			}
 		}
+	}
+	
+	private void handleCircleElement(CircleElement element, Point2d p) {
+		g.setColor(element.getColor());
+		double r = element.getRadius();
+		g.drawOval((int)(p.x - r), (int)(p.y - r), (int)(r * 2), (int)(r * 2));
 	}
 
 	private void handleTextElement(TextElement element, Point2d center) {

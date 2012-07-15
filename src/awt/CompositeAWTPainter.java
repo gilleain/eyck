@@ -13,6 +13,12 @@ import diagram.DiagramBounder;
 import diagram.element.IDiagramElement;
 import divide.IDivider;
 
+/**
+ * Uses a BasicAWTPainter to paint a set of diagrams.
+ * 
+ * @author maclean
+ *
+ */
 public class CompositeAWTPainter implements ICompositePainter<IDiagramElement> {
     
     private BasicAWTPainter subPainter;
