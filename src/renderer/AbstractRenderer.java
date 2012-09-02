@@ -3,13 +3,14 @@ package renderer;
 import painter.IPainter;
 import sketcher.Sketcher;
 
+@SuppressWarnings("rawtypes")
 public abstract class AbstractRenderer<T> implements IRenderer<T> {
     
-    protected Sketcher sketcher;
+	protected Sketcher sketcher;
     
     protected IPainter painter;
     
-    @Override
+	@Override
     public void setSketcher(Sketcher sketcher) {
         this.sketcher = sketcher;
     }

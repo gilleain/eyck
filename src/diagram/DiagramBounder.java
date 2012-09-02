@@ -13,7 +13,7 @@ import painter.IBounder;
 
 public class DiagramBounder implements IBounder<IDiagramElement> {
     
- private Graphics graphics;
+	private Graphics graphics;
     
     public DiagramBounder(Graphics graphics) {
         this.graphics = graphics;

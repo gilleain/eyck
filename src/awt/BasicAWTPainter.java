@@ -55,6 +55,10 @@ public class BasicAWTPainter extends AbstractPainter<IDiagramElement> {
 
 	private void paint(IDiagramElement diagram, Point2d canvasCenter, double scale) {
 		Point2d diagramCenter = getCenter(diagram);
+		System.out.println("painting at canvas center " 
+							+ canvasCenter +
+							" diagram center " + diagramCenter
+							+ " scale " + scale );
 
 		// set the transform
 		AffineTransform savedTransform = g.getTransform();
