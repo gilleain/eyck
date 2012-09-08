@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface IDivider {
     
-    public List<Rectangle2D> divide(Rectangle2D canvas);
+    public List<Rectangle2D> divide(Rectangle2D canvas, int parts);
     
     public void addSubDivider(IDivider subDivider);
     

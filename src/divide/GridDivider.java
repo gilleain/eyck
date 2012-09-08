@@ -39,7 +39,7 @@ public class GridDivider extends AbstractDivider {
     }
 
     @Override
-    public List<Rectangle2D> divide(Rectangle2D canvas) {
+    public List<Rectangle2D> divide(Rectangle2D canvas, int parts) {
         double colWidth = canvas.getWidth() / cols;
         double rowHeight = canvas.getHeight() / rows;
         

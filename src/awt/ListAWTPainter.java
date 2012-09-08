@@ -27,7 +27,7 @@ public class ListAWTPainter implements ICompositePainter<List<IDiagramElement>> 
 
 	@Override
 	public void paint(List<IDiagramElement> diagramList, Rectangle2D canvas, IDivider divider) {
-		List<Rectangle2D> canvases = divider.divide(canvas);
+		List<Rectangle2D> canvases = divider.divide(canvas, diagramList.size());
 		int i = 0;
 		for (IDiagramElement diagram : diagramList) {
 			subPainter.paint(diagram, canvases.get(i));

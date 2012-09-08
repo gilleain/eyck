@@ -33,9 +33,10 @@ public class CompositeAWTPainter implements ICompositePainter<IDiagramElement> {
     public void paint(IDiagramElement compositeDiagram,
                       Rectangle2D canvas, 
                       IDivider divider) {
-        List<Rectangle2D> canvases = divider.divide(canvas);
+    	List<IDiagramElement> children = compositeDiagram.getChildren();
+        List<Rectangle2D> canvases = divider.divide(canvas, children.size());
         int i = 0;
-        for (IDiagramElement diagram : compositeDiagram.getChildren()) {
+        for (IDiagramElement diagram : children) {
             subPainter.paint(diagram, canvases.get(i));
             i++;
         }

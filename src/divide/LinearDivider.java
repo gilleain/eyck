@@ -12,19 +12,16 @@ public class LinearDivider extends AbstractDivider {
     
     private List<Rectangle2D> canvases;
     
-    private int n;
-    
-    public LinearDivider(int n) {
-        this(n, Axis.LEFT_RIGHT);
+    public LinearDivider() {
+        this(Axis.LEFT_RIGHT);
     }
     
-    public LinearDivider(int n, Axis axis) {
-        this.n = n;
+    public LinearDivider(Axis axis) {
         this.axis = axis;
     }
 
     @Override
-    public List<Rectangle2D> divide(Rectangle2D canvas) {
+    public List<Rectangle2D> divide(Rectangle2D canvas, int n) {
         
         double dim;
         double centerX;
