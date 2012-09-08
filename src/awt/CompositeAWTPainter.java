@@ -8,7 +8,6 @@ import javax.vecmath.Point2d;
 
 import layout.ILayout;
 import painter.ICompositePainter;
-import awt.BasicAWTPainter;
 import diagram.DiagramBounder;
 import diagram.element.IDiagramElement;
 import divide.IDivider;
