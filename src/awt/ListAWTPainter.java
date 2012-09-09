@@ -31,6 +31,7 @@ public class ListAWTPainter implements ICompositePainter<List<IDiagramElement>> 
 		int i = 0;
 		for (IDiagramElement diagram : diagramList) {
 			subPainter.paint(diagram, canvases.get(i));
+			i++;
 		}
 		
 	}
