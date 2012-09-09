@@ -60,8 +60,22 @@ public class LinearDivider extends AbstractDivider {
                 centerY += dim;
             }
         }
-        System.out.println("divided " + canvas + " into " + canvases);
+        System.out.println("divided " + canvasToString(canvas)
+        				  + "] into " + canvasesToString(canvases));
         return canvases;
+    }
+    
+    private String canvasToString(Rectangle2D canvas) {
+    	return "[" + canvas.getCenterX() + " " + canvas.getCenterY() + " "
+		  		   + canvas.getWidth() + " " + canvas.getHeight() + "]";
+    }
+    
+    private String canvasesToString(List<Rectangle2D> canvases) {
+    	String s = "";
+    	for (Rectangle2D canvas : canvases) {
+    		s += canvasToString(canvas);
+    	}
+    	return s;
     }
 
 }
