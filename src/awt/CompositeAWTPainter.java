@@ -10,7 +10,8 @@ import layout.ILayout;
 import painter.ICompositePainter;
 import diagram.DiagramBounder;
 import diagram.element.IDiagramElement;
-import divide.IDivider;
+import divide.IrregularDivider;
+import divide.RegularDivider;
 
 /**
  * Uses a BasicAWTPainter to paint a set of diagrams.
@@ -32,7 +33,7 @@ public class CompositeAWTPainter implements ICompositePainter<IDiagramElement> {
     @Override
     public void paint(IDiagramElement compositeDiagram,
                       Rectangle2D canvas, 
-                      IDivider divider) {
+                      RegularDivider divider) {
     	List<IDiagramElement> children = compositeDiagram.getChildren();
         List<Rectangle2D> canvases = divider.divide(canvas, children.size());
         int i = 0;
@@ -54,5 +55,12 @@ public class CompositeAWTPainter implements ICompositePainter<IDiagramElement> {
             i++;
         }
     }
+
+	@Override
+	public void paint(
+			IDiagramElement compositeDiagram, Rectangle2D canvas, IrregularDivider divider) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

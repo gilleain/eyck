@@ -4,7 +4,7 @@ import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LinearDivider extends AbstractDivider {
+public class LinearDivider extends AbstractDivider implements RegularDivider {
     
     public enum Axis { LEFT_RIGHT, TOP_BOTTOM };
     

@@ -7,12 +7,12 @@ import java.util.List;
 import javax.vecmath.Point2d;
 
 import layout.ILayout;
-
 import painter.ICompositePainter;
 import diagram.DiagramBounder;
 import diagram.element.ElementList;
 import diagram.element.IDiagramElement;
-import divide.IDivider;
+import divide.IrregularDivider;
+import divide.RegularDivider;
 
 public class ListAWTPainter implements ICompositePainter<List<IDiagramElement>> {
 	  
@@ -26,7 +26,7 @@ public class ListAWTPainter implements ICompositePainter<List<IDiagramElement>> 
     }
 
 	@Override
-	public void paint(List<IDiagramElement> diagramList, Rectangle2D canvas, IDivider divider) {
+	public void paint(List<IDiagramElement> diagramList, Rectangle2D canvas, RegularDivider divider) {
 		List<Rectangle2D> canvases = divider.divide(canvas, diagramList.size());
 		int i = 0;
 		for (IDiagramElement diagram : diagramList) {
@@ -50,6 +50,13 @@ public class ListAWTPainter implements ICompositePainter<List<IDiagramElement>> 
             subPainter.paint(diagram, centers.get(i));
             i++;
         }
+		
+	}
+
+	@Override
+	public void paint(List<IDiagramElement> compositeDiagram,
+			Rectangle2D canvas, IrregularDivider divider) {
+		// TODO Auto-generated method stub
 		
 	}
 

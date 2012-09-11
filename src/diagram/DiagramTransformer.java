@@ -1,6 +1,7 @@
 package diagram;
 
 import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 
 import diagram.element.CircleElement;
 import diagram.element.ElementList;
@@ -24,6 +25,29 @@ public class DiagramTransformer {
 		} else if (element instanceof CircleElement) {
 			CircleElement c = (CircleElement) element; 
 			c.center.set(c.center.x + dx, c.center.y + dy);
+		} else {
+			// TODO :)
+		}
+	}
+	
+	public static void scaleToFit(IDiagramElement root, Rectangle2D canvas) {
+		Rectangle2D bounds = root.getBounds();
+		double dx = canvas.getWidth() / bounds.getWidth();
+		double dy = canvas.getHeight() / bounds.getHeight();
+		double scale = Math.min(dx, dy);
+		scaleToFit(root, scale);
+	}
+	
+	public static void scaleToFit(IDiagramElement element, double scale) {
+		if (element instanceof ElementList) {
+			ElementList list = (ElementList) element;
+			for (IDiagramElement child : list) {
+				scaleToFit(child, scale);
+			}
+		} else if (element instanceof CircleElement) {
+			CircleElement c = (CircleElement) element; 
+//			c.center.set(c.center.x + dx, c.center.y + dy);
+			// TODO :)
 		} else {
 			// TODO :)
 		}

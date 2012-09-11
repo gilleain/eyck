@@ -4,16 +4,11 @@ import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GridDivider extends AbstractDivider {
+public class GridDivider extends AbstractDivider implements RegularDivider {
     
     private int rows;
     
     private int cols;
-    
-    public GridDivider(int n) {
-        rows = findLargestFactor(n);
-        cols = n / rows;
-    }
     
     private int findLargestFactor(int n) {
         for (int i = (int)Math.sqrt(n); i >= 2; i--) {
@@ -25,10 +20,11 @@ public class GridDivider extends AbstractDivider {
         return 1;
     }
     
-    public GridDivider(int rows, int cols) {
-        this.rows = rows;
-        this.cols = cols;
-    }
+    // XXX commented out because the constructor is meant to be independent of the part count
+//    public GridDivider(int rows, int cols) {
+//        this.rows = rows;
+//        this.cols = cols;
+//    }
     
     public int getRowCount() {
         return rows;
@@ -40,6 +36,9 @@ public class GridDivider extends AbstractDivider {
 
     @Override
     public List<Rectangle2D> divide(Rectangle2D canvas, int parts) {
+    	rows = findLargestFactor(parts);
+        cols = parts / rows;
+        
         double colWidth = canvas.getWidth() / cols;
         double rowHeight = canvas.getHeight() / rows;
         

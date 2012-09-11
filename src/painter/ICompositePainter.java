@@ -1,9 +1,12 @@
 package painter;
 
 import java.awt.geom.Rectangle2D;
+
 import javax.vecmath.Point2d;
+
 import layout.ILayout;
-import divide.IDivider;
+import divide.IrregularDivider;
+import divide.RegularDivider;
 
 public interface ICompositePainter<T> {
     
@@ -15,7 +18,9 @@ public interface ICompositePainter<T> {
      * @param canvas
      * @param divider
      */
-    public void paint(T compositeDiagram, Rectangle2D canvas, IDivider divider);
+    public void paint(T compositeDiagram, Rectangle2D canvas, RegularDivider divider);
+    
+    public void paint(T compositeDiagram, Rectangle2D canvas, IrregularDivider divider);
 
     /**
      * Paint the composite diagram centered on the supplied point, using the 
