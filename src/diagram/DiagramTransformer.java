@@ -6,6 +6,7 @@ import java.awt.geom.Rectangle2D;
 import diagram.element.CircleElement;
 import diagram.element.ElementList;
 import diagram.element.IDiagramElement;
+import diagram.element.LineElement;
 
 public class DiagramTransformer {
 	
@@ -54,6 +55,15 @@ public class DiagramTransformer {
 			double y = ((c.center.y - yy) * scale) + cy;
 			System.out.println("setting " + c.center + " to " + x + " " + y);
 			c.center.set(x, y);
+			c.setRadius(c.getRadius() * scale);
+		} else if (element instanceof LineElement) {
+			LineElement l = (LineElement) element;
+			double x1 = ((l.a.x - xx) * scale) + cx;
+			double y1 = ((l.a.y - yy) * scale) + cy;
+			double x2 = ((l.b.x - xx) * scale) + cx;
+			double y2 = ((l.b.y - yy) * scale) + cy;
+			l.a.set(x1, y1);
+			l.b.set(x2, y2);
 		} else {
 			// TODO :)
 		}

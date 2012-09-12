@@ -33,7 +33,6 @@ public class ListAWTPainter implements ICompositePainter<List<IDiagramElement>> 
 			subPainter.paint(diagram, canvases.get(i));
 			i++;
 		}
-		
 	}
 
 	@Override
@@ -54,10 +53,13 @@ public class ListAWTPainter implements ICompositePainter<List<IDiagramElement>> 
 	}
 
 	@Override
-	public void paint(List<IDiagramElement> compositeDiagram,
-			Rectangle2D canvas, IrregularDivider divider) {
-		// TODO Auto-generated method stub
-		
+	public void paint(List<IDiagramElement> diagramList, Rectangle2D canvas, IrregularDivider divider) {
+		List<Rectangle2D> canvases = divider.divide(canvas);
+		int i = 0;
+		for (IDiagramElement diagram : diagramList) {
+			subPainter.paint(diagram, canvases.get(i));
+			i++;
+		}
 	}
 
 }
