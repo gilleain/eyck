@@ -30,9 +30,16 @@ public class BasicAWTPainter extends AbstractPainter<IDiagramElement> {
 
 	private DiagramBounder bounder;
 	
+	private boolean shouldTransform;
+	
 	public BasicAWTPainter(Graphics g) {
+		this(g, true);
+	}
+	
+	public BasicAWTPainter(Graphics g, boolean shouldTransform) {
 		this.g = (Graphics2D) g;
 		this.bounder = new DiagramBounder(g);
+		this.shouldTransform = shouldTransform;
 	}
 
 	@Override
@@ -60,16 +67,22 @@ public class BasicAWTPainter extends AbstractPainter<IDiagramElement> {
 							" diagram center " + diagramCenter
 							+ " scale " + scale );
 
-		// set the transform
-		AffineTransform savedTransform = g.getTransform();
-		g.translate(canvasCenter.x, canvasCenter.y);
-		g.scale(scale, scale);
-		g.translate(-diagramCenter.x, -diagramCenter.y);
+		AffineTransform savedTransform = null;
+		if (shouldTransform) {
+			// set the transform
+			savedTransform = g.getTransform();
+			g.translate(canvasCenter.x, canvasCenter.y);
+			g.scale(scale, scale);
+			g.translate(-diagramCenter.x, -diagramCenter.y);
+		}
 
+		// XXX - why are we passing the canvas center?
 		paintRecursively(diagram, diagramCenter, scale, canvasCenter);
 
 		// restore the transform
-		g.setTransform(savedTransform);
+		if (shouldTransform) {
+			g.setTransform(savedTransform);
+		}
 	}
 
 	private void paintRecursively(IDiagramElement diagram, Point2d diagramCenter, double scale, Point2d canvasCenter) {

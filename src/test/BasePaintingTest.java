@@ -1,5 +1,7 @@
 package test;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
@@ -19,8 +21,12 @@ public class BasePaintingTest {
     public static final int IMG_HEIGHT = 200;
     
     public Image getBlankTestImage() {
-        return new BufferedImage(
+        Image img = new BufferedImage(
                 IMG_WIDTH, IMG_HEIGHT, BufferedImage.TYPE_INT_RGB);
+        Graphics g = img.getGraphics();
+        g.setColor(Color.WHITE);
+        g.fillRect(0, 0, IMG_WIDTH, IMG_HEIGHT);
+        return img;
     }
     
     public Rectangle2D getCanvas() {
