@@ -21,7 +21,11 @@ public class ListAWTPainter implements ICompositePainter<List<IDiagramElement>> 
     private DiagramBounder bounder;
     
     public ListAWTPainter(Graphics g) {
-        subPainter = new BasicAWTPainter(g);
+    	this(g, true);
+    }
+    
+    public ListAWTPainter(Graphics g, boolean transformSubPainter) {
+        subPainter = new BasicAWTPainter(g, transformSubPainter);
         bounder = new DiagramBounder(g);
     }
 

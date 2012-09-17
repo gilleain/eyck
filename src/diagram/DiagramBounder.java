@@ -29,8 +29,10 @@ public class DiagramBounder implements IBounder<IDiagramElement> {
                 elementBounds = getBounds((TextElement) element, metrics);
             }
             if (elementBounds == null) {
-                Point2d center = element.getCenter();
-                elementBounds = new Rectangle2D.Double(center.x, center.y, 0, 0);
+            	if (element != null) {
+	                Point2d center = element.getCenter();
+	                elementBounds = new Rectangle2D.Double(center.x, center.y, 0, 0);
+            	}
             }
             
             if (bounds == null) {

@@ -12,7 +12,7 @@ public class CircleElement extends LeafElement {
 	public CircleElement(Point2d center, double radius) {
 		super(center);
 		this.radius = radius;
-		this.color = Color.BLACK;
+		this.outlineColor = Color.BLACK;
 	}
 	
 	public Rectangle2D getBounds() {

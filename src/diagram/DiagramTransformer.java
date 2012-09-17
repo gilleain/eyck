@@ -33,6 +33,8 @@ public class DiagramTransformer {
 	
 	public static void scaleToFit(IDiagramElement root, Rectangle2D canvas) {
 		Rectangle2D bounds = root.getBounds();
+		DiagramPrinter.print(root);
+		if (bounds == null) return;
 		double dx = canvas.getWidth() / bounds.getWidth();
 		double dy = canvas.getHeight() / bounds.getHeight();
 		double scale = Math.min(dx, dy);

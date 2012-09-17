@@ -19,7 +19,7 @@ public class LineElement extends LeafElement {
         super(calculateCenter(a, b));
         this.a = a;
         this.b = b;
-        color = c;
+        outlineColor = c;
     }
 
     @Override

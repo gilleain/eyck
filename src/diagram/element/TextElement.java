@@ -16,7 +16,7 @@ public class TextElement extends LeafElement {
     public TextElement(String text, Point2d center, Color color) {
         super(center);
         this.text = text;
-        this.color = color;
+        this.outlineColor = color;
     }
 
     public TextElement() {

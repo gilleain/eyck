@@ -1,6 +1,5 @@
 package awt;
 
-import java.awt.Color;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -101,26 +100,37 @@ public class BasicAWTPainter extends AbstractPainter<IDiagramElement> {
 	}
 	
 	private void handleCircleElement(CircleElement element, Point2d p) {
-		g.setColor(element.getColor());
 		double r = element.getRadius();
-		g.drawOval((int)(p.x - r), (int)(p.y - r), (int)(r * 2), (int)(r * 2));
+		if (element.isFilled()) {
+			g.setColor(element.getFillColor());
+			g.fillOval((int)(p.x - r), (int)(p.y - r), (int)(r * 2), (int)(r * 2));
+		}
+		if (element.isOutlined()) {
+			g.setColor(element.getOutlineColor());
+			g.drawOval((int)(p.x - r), (int)(p.y - r), (int)(r * 2), (int)(r * 2));
+		}
 	}
 
 	private void handleTextElement(TextElement element, Point2d center) {
 		Point p = getTextPoint(element, center.x, center.y);
-		g.setColor(Color.WHITE);
-		int w = (int)element.bounds.getWidth();
-		int h = (int)element.bounds.getHeight();
-		int x = (int)center.x - (w/2);
-		int y = (int)center.y - (h/2);
-		g.fillRect(x, y, w, h);
-		g.setColor(element.getColor());
+		if (element.isFilled()) {
+			g.setColor(element.getFillColor());
+			int w = (int)element.bounds.getWidth();
+			int h = (int)element.bounds.getHeight();
+			int x = (int)center.x - (w/2);
+			int y = (int)center.y - (h/2);
+			g.fillRect(x, y, w, h);
+		}
+		g.setColor(element.getOutlineColor());
 		g.drawString(element.text, (int)p.x, (int)p.y);
 	}
 
 	private void handleLineElement(
 			LineElement element, Point2d diagramCenter, double scale, Point2d canvasCenter) {
-		g.setColor(element.getColor());
+		if (element.isFilled()) {
+			// XXX can't really fill a line
+		}
+		g.setColor(element.getOutlineColor());
 		Point2d a = element.a;
 		Point2d b = element.b;
 		g.drawLine((int)a.x, (int)a.y, (int)b.x, (int)b.y);

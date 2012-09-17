@@ -25,7 +25,7 @@ public class RectangleElement extends LeafElement {
         super(center);
         this.width = width;
         this.height = height;
-        this.color = color;
+        this.outlineColor = color;
     }
 
 }

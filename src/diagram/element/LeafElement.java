@@ -18,14 +18,37 @@ public class LeafElement extends AbstractDiagramElement {
     
     public Point2d center;
     
-    public Color color;
+    public Color outlineColor;
+    
+    public boolean isOutlined;
+    
+    public Color fillColor;
+    
+    public boolean isFilled;
     
     public LeafElement(Point2d center) {
-        this.center = center;
-        this.color = Color.BLACK;
-    }
+	    this.center = center;
+	    this.outlineColor = Color.BLACK;
+	    this.fillColor = null;
+	}
 
-    @Override
+	public boolean isOutlined() {
+		return isOutlined;
+	}
+
+	public void setOutlined(boolean isOutlined) {
+		this.isOutlined = isOutlined;
+	}
+
+	public boolean isFilled() {
+		return isFilled;
+	}
+
+	public void setFilled(boolean isFilled) {
+		this.isFilled = isFilled;
+	}
+
+	@Override
     public Point2d getCenter() {
         return center;
     }
@@ -40,11 +63,23 @@ public class LeafElement extends AbstractDiagramElement {
         return 1;
     }
 
-    public Color getColor() {
-        return color;
+    public Color getOutlineColor() {
+        return outlineColor;
+    }
+    
+    public void setOutlineColor(Color color) {
+    	this.outlineColor = color;
     }
 
-    @Override
+    public Color getFillColor() {
+		return fillColor;
+	}
+
+	public void setFillColor(Color fillColor) {
+		this.fillColor = fillColor;
+	}
+
+	@Override
     public List<IDiagramElement> getChildren() {
         return new ArrayList<IDiagramElement>();
     }

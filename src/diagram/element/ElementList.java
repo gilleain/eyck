@@ -20,7 +20,11 @@ public class ElementList extends AbstractDiagramElement implements Iterable<IDia
     @Override
     public Point2d getCenter() {
         Rectangle2D bounds = getBounds();
-        return new Point2d(bounds.getCenterX(), bounds.getCenterY());
+        if (bounds == null) {
+        	return new Point2d(0, 0);	// XXX
+        } else {
+        	return new Point2d(bounds.getCenterX(), bounds.getCenterY());
+        }
     }
     
     public Rectangle2D getBounds() {
@@ -30,7 +34,9 @@ public class ElementList extends AbstractDiagramElement implements Iterable<IDia
             if (bounds == null) {
                 bounds = (Rectangle2D) childBounds.clone();
             } else {
-                bounds.add(childBounds);
+            	if (childBounds != null) {
+            		bounds.add(childBounds);
+            	}
             }
         }
         return bounds;
